@@ -185,7 +185,7 @@ SECRET_KEY = 'django-insecure-pa91+#c*s1nyv@jj=4bn_50ycccvx#9b*6(9o^$dgp(%+*&v7d
 # shows useful error pages. Set this to False in production.
 DEBUG = True
 
-ALLOWED_HOSTS = ['dadralhresort.onrender.com','localhost']
+ALLOWED_HOSTS = ['dadralhresort.onrender.com','localhost','*']
 
 
 # Application definition
