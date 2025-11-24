@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | Rajvilas Resort</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  {% block extra_css %}{% endblock %}
+  <style>
+    /* ... existing styles ... */
+    .breadcrumb {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+      margin-bottom: 20px;
+      list-style: none;
+    }
+    
+    .breadcrumb ol {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .breadcrumb li:not(:last-child):after {
+      content: "›";
+      margin-left: 10px;
+      color: #8b6b3d;
+    }
+    
+    .breadcrumb a {
+      color: #C6A664;
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .notification-badge {
+      background: #e74c3c;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+    
+    .header-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <a href="{% url 'index' %}">
+          <img src="{% static 'images/logo2.png' %}" alt="Rajvilas Resort Logo">
+        </a>
+      </div>
+      <div class="user-profile">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-name">{{ request.user.username|title }}</div>
+        <div class="user-role">Administrator</div>
+      </div>
+      <nav>
+        <a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="active"{% endif %}>
+          <i class="fas fa-chart-line"></i> Dashboard
+        </a>
+        <a href="{% url 'room' %}" {% if request.resolver_match.url_name == 'room' %}class="active"{% endif %}>
+          <i class="fas fa-bed"></i> Rooms
+        </a>
+        <a href="{% url 'gallery' %}" {% if request.resolver_match.url_name == 'gallery' %}class="active"{% endif %}>
+          <i class="fas fa-images"></i> Gallery
+        </a>
+        <a href="{% url 'amantie' %}" {% if request.resolver_match.url_name == 'amantie' %}class="active"{% endif %}>
+          <i class="fas fa-spa"></i> Amenities
+        </a>
+        <a href="{% url 'dinning' %}" {% if request.resolver_match.url_name == 'dinning' %}class="active"{% endif %}>
+          <i class="fas fa-utensils"></i> Dining
+        </a>
+        <a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>
+          <i class="far fa-envelope"></i> Contact
+        </a>
+        <a href="{% url 'logout' %}">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </nav>
+    </aside>
+    
+    <main class="dashboard-main">
+      {% block dashboard_content %}
+      <!-- Default dashboard content -->
+      {% endblock %}
+    </main>
+  </div>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

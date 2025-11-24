@@ -1,0 +1,924 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dining — Raj Vilas Palace</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <style>
+      :root {
+        --gold-bright: #c29a5c;
+        --gold-dark: #8b6b1f;
+        --gold-light: #e9d5a9;
+        --brown-deep: #4a3c2e;
+        --brown-medium: #6b573e;
+        --brown-light: #a38b6d;
+        --bg-cream: #f9f4ef;
+        --bg-warm: #fff8f2;
+        --bg-white: #ffffff;
+        --text-dark: #3b3b3b;
+        --text-muted: #666;
+        --royal-red: #8b4513;
+        --light-brown: #a38b6d;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-cream);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      /* Hero Section */
+      .dinning-section {
+        position: relative;
+        width: 100%;
+        /* fill viewport under fixed navbar (navbar height ~90px) */
+        height: calc(100vh - 90px);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .image-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .image-content::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.5)
+        );
+      }
+
+      /* Gourmet Experiences Section */
+      .dine {
+        text-align: center;
+        padding: 60px 20px 40px;
+        margin-top: 20px;
+        background: var(--bg-white);
+      }
+
+      .dine h1 {
+        color: var(--gold-bright);
+        font-size: 2.5rem;
+        font-family: "Playfair Display", serif;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .dine p {
+        max-width: 90%; /* allow fluid width on small screens */
+        text-align: center;
+        margin: 0 auto 30px;
+        padding: 10px;
+        line-height: 1.8;
+        color: var(--text-dark);
+        font-size: 1.05rem;
+      }
+
+      .dine img {
+        max-width: 100%;
+        height: auto;
+        opacity: 0.9;
+      }
+
+      /* Dining Venue Sections */
+      .comfy {
+        display: flex;
+        max-width: 1400px;
+        margin: 60px auto;
+        padding: 0 60px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap; /* allow wrapping on narrow screens */
+      }
+      .intro .text h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      .cleft img,
+      .cright1 img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .cleft:hover img,
+      .cright1:hover img {
+        transform: scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .cright,
+      .cleft1 {
+        flex: 1;
+      }
+
+      .cright h2,
+      .cleft1 h2 {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        color: var(--gold-bright);
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+      }
+
+      .cright p,
+      .cleft1 p {
+        margin-bottom: 25px;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text-dark);
+      }
+
+      .cright a,
+      .cleft1 a {
+        color: var(--gold-bright);
+        font-size: 1.1rem;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+      }
+
+      .cright a:hover,
+      .cleft1 a:hover {
+        color: var(--gold-dark);
+        border-bottom-color: var(--gold-dark);
+        gap: 12px;
+      }
+
+      .cright a::after,
+      .cleft1 a::after {
+        content: "→";
+        transition: transform 0.3s ease;
+      }
+
+      .cright a:hover::after,
+      .cleft1 a:hover::after {
+        transform: translateX(5px);
+      }
+
+      .cleft,
+      .cright1 {
+        flex: 1;
+      }
+
+      /* Master Chefs Section */
+      .chefs-section {
+        padding: 100px 0;
+        background: var(--bg-white);
+      }
+
+      .container-chef {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        color: var(--brown-deep);
+        margin-bottom: 60px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 25px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold-bright),
+          transparent
+        );
+        border-radius: 2px;
+      }
+
+      .chefs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 50px;
+        margin-top: 60px;
+      }
+
+      .chef-card {
+        background: var(--bg-white);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid var(--gold-light);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chef-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(139, 69, 19, 0.25);
+        border-color: var(--gold-bright);
+      }
+
+      .chef-main-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chef-image-container {
+        position: relative;
+        height: 320px;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--gold-light), #f5e8d3);
+        border-bottom: 3px solid var(--gold-bright);
+      }
+
+      .chef-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .chef-card:hover .chef-image {
+        transform: scale(1.15);
+      }
+
+      .chef-info {
+        padding: 35px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chef-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.9rem;
+        color: var(--brown-deep);
+        margin-bottom: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .chef-specialty {
+        color: var(--gold-dark);
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        position: relative;
+        padding-bottom: 18px;
+      }
+
+      .chef-specialty::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--gold-bright);
+        border-radius: 2px;
+      }
+
+      .chef-bio {
+        color: #2c2c2c;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        font-size: 1.05rem;
+        flex: 1;
+        font-weight: 400;
+      }
+
+      .chef-experience {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 2px solid var(--gold-light);
+        background: linear-gradient(180deg, transparent, var(--bg-cream));
+        margin-left: -35px;
+        margin-right: -35px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-bottom: 10px;
+      }
+
+      .exp-item {
+        text-align: center;
+        position: relative;
+      }
+
+      .exp-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 35px;
+        background: var(--gold-bright);
+        opacity: 0.4;
+      }
+
+      .exp-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--brown-deep);
+        display: block;
+        line-height: 1.2;
+        font-family: "Playfair Display", serif;
+      }
+
+      .exp-label {
+        font-size: 0.9rem;
+        color: var(--brown-medium);
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+
+      /* Food Gallery Section */
+      .food-gallery-section {
+        padding: 100px 0;
+        background: var(--bg-white);
+      }
+
+      .food-gallery-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .food-gallery-title {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        color: var(--brown-deep);
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 25px;
+      }
+
+      .food-gallery-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold-bright),
+          transparent
+        );
+        border-radius: 2px;
+      }
+
+      .food-gallery-subtitle {
+        text-align: center;
+        color: var(--brown-medium);
+        font-size: 1.1rem;
+        margin-bottom: 60px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        font-style: italic;
+      }
+
+      .food-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 60px;
+      }
+
+      .food-image-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .food-image-item:hover {
+        transform: scale(1.03);
+      }
+
+      .food-image-item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .food-image-item:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .comfy {
+          max-width: 100%;
+          padding: 0 40px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .comfy {
+          flex-direction: column;
+          padding: 0 30px;
+          gap: 40px;
+        }
+
+        .cleft,
+        .cright1 {
+          width: 100%;
+        }
+
+        .cright,
+        .cleft1 {
+          width: 100%;
+          text-align: center;
+        }
+
+        .cright h2,
+        .cleft1 h2 {
+          font-size: 2rem;
+        }
+
+        .dine h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .chefs-grid {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 40px;
+        }
+
+        .chef-image-container {
+          height: 280px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .dinning-section {
+          height: 50vh;
+        }
+
+        .dine {
+          padding: 40px 15px 30px;
+        }
+
+        .dine h1 {
+          font-size: 1.8rem;
+        }
+
+        .dine p {
+          font-size: 0.95rem;
+          padding: 0 10px;
+        }
+
+        .comfy {
+          padding: 0 20px;
+          margin: 40px auto;
+        }
+
+        .cright h2,
+        .cleft1 h2 {
+          font-size: 1.8rem;
+        }
+
+        .cright p,
+        .cleft1 p {
+          font-size: 0.95rem;
+        }
+
+        .chefs-section {
+          padding: 60px 0;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .chefs-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .chef-image-container {
+          height: 250px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .dinning-section {
+          height: 40vh;
+        }
+
+        .dine h1 {
+          font-size: 1.5rem;
+        }
+
+        .cright h2,
+        .cleft1 h2 {
+          font-size: 1.5rem;
+        }
+
+        .chefs-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .chef-image-container {
+          height: 220px;
+        }
+
+        .chef-info {
+          padding: 25px;
+        }
+
+        .chef-name {
+          font-size: 1.5rem;
+        }
+
+        .chef-experience {
+          gap: 25px;
+        }
+
+        .exp-number {
+          font-size: 1.5rem;
+        }
+
+        .food-gallery-title {
+          font-size: 2rem;
+        }
+
+        .food-gallery-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
+        }
+
+        .food-image-item img {
+          height: 250px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .food-gallery-section {
+          padding: 60px 0;
+        }
+
+        .food-gallery-title {
+          font-size: 1.8rem;
+        }
+
+        .food-gallery-subtitle {
+          font-size: 1rem;
+          margin-bottom: 40px;
+        }
+
+        .food-gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+          margin-top: 40px;
+        }
+
+        .food-image-item img {
+          height: 220px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .food-gallery-title {
+          font-size: 1.5rem;
+        }
+
+        .food-gallery-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .food-image-item img {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "header.html" %}
+
+    <!-- Hero Section -->
+    <section class="dinning-section">
+      <div class="image-content">
+        <img src="{% static 'images/dinning.webp' %}" alt="Dining Experience" />
+      </div>
+    </section>
+
+    <!-- Gourmet Experiences Section -->
+    <section class="dine">
+      <h1>Gourmet Experiences</h1>
+      <p>
+        Experience royal dining at Raj Vilas Palace with exquisite multi-cuisine
+        dishes. Enjoy handcrafted meals made with fresh, locally-sourced
+        ingredients. Dine in elegant, heritage-inspired interiors with
+        personalized service. A true gourmet journey awaits you in every bite.
+      </p>
+      <img src="{% static 'images/divider.svg' %}" alt="Divider" />
+    </section>
+
+    <!-- Square Terrace Section -->
+    <section>
+      <div class="comfy">
+        <div class="cleft">
+          <img
+            src="{% static 'images/heritage-hotel-dining-experience-img-2.jpg' %}"
+            alt="Square Terrace"
+          />
+        </div>
+        <div class="cright">
+          <h2>Square Terrace</h2>
+          <p>
+            Square Terrace Dining offers an unforgettable experience where
+            delicious food meets a breathtaking view. Enjoy freshly prepared
+            gourmet dishes under the open sky, surrounded by an elegant and
+            relaxing rooftop ambiance. It's the perfect spot for romantic
+            dinners, family gatherings, or casual evening get-togethers. Every
+            bite is crafted with care, making each meal feel like a celebration.
+            Come for the flavors, stay for the atmosphere – Square Terrace truly
+            redefines rooftop dining.
+          </p>
+          <a href="{% url 'menu' %}">View menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dining Hall Section -->
+    <section>
+      <div class="comfy">
+        <div class="cleft1">
+          <h2>Dining Hall</h2>
+          <p>
+            The dining hall is the heart of any gathering space, offering a warm
+            and welcoming atmosphere for meals and conversations. Designed to
+            accommodate guests comfortably, it features spacious seating
+            arrangements and an elegant layout that enhances every dining
+            experience. The soft lighting and tasteful décor create a cozy yet
+            sophisticated ambiance, perfect for both casual meals and special
+            occasions. Whether serving family dinners, festive feasts, or formal
+            events, the dining hall provides an inviting setting where food and
+            fellowship come together. It's not just a place to eat—it's a place
+            where memories are made.
+          </p>
+          <a href="{% url 'menu' %}">View menu</a>
+        </div>
+        <div class="cright1">
+          <img
+            src="{% static 'images/heritage-hotel-dining-experience-img-3 (1).jpg' %}"
+            alt="Dining Hall"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Royal Dining Section -->
+    <section>
+      <div class="comfy">
+        <div class="cleft">
+          <img
+            src="{% static 'images/heritage-hotel-dining-experience-img-1.jpg' %}"
+            alt="Royal Dining"
+          />
+        </div>
+        <div class="cright">
+          <h2>Royal Dining</h2>
+          <p>
+            Royal Dining invites you to indulge in a truly majestic culinary
+            experience where tradition meets luxury. From the moment you step
+            in, the grand ambiance, regal décor, and impeccable service set the
+            tone for an unforgettable meal. Each dish is crafted with the finest
+            ingredients, offering flavors fit for royalty and celebrating the
+            richness of diverse cuisines. Whether it's an intimate dinner, a
+            family celebration, or a special occasion, Royal Dining transforms
+            every meal into an extraordinary experience. Savor the elegance,
+            relish the taste, and let every moment feel like dining in a palace.
+          </p>
+          <a href="{% url 'menu' %}">View menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Chefs Section -->
+    <section class="chefs-section">
+      <div class="container-chef">
+        <h2 class="section-title">Our Master Chefs</h2>
+        <div class="chefs-grid">
+          <div class="chef-card">
+            <div class="chef-main-content">
+              <div class="chef-image-container">
+                <img
+                  src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Chef Rajesh Singh"
+                  class="chef-image"
+                />
+              </div>
+              <div class="chef-info">
+                <h3 class="chef-name">Chef Rajesh Singh</h3>
+                <p class="chef-specialty">Traditional Rajasthani Cuisine</p>
+                <p class="chef-bio">
+                  Master of authentic royal recipes with 25+ years experience.
+                  Trained in the traditional kitchens of Rajasthan, bringing
+                  centuries-old culinary traditions to life.
+                </p>
+                <div class="chef-experience">
+                  <div class="exp-item">
+                    <span class="exp-number">25+</span>
+                    <span class="exp-label">Years</span>
+                  </div>
+                  <div class="exp-item">
+                    <span class="exp-number">50+</span>
+                    <span class="exp-label">Recipes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chef-card">
+            <div class="chef-main-content">
+              <div class="chef-image-container">
+                <img
+                  src="{% static 'images/chef-cooking-Kitchen.jpg' %}"
+                  alt="Chef Maria Rodriguez"
+                  class="chef-image"
+                />
+              </div>
+              <div class="chef-info">
+                <h3 class="chef-name">Chef kunal kumar</h3>
+                <p class="chef-specialty">International Fusion</p>
+                <p class="chef-bio">
+                  European-trained chef specializing in fusion cuisine. Multiple
+                  award-winning culinary artist who blends global techniques
+                  with local flavors.
+                </p>
+                <div class="chef-experience">
+                  <div class="exp-item">
+                    <span class="exp-number">15+</span>
+                    <span class="exp-label">Years</span>
+                  </div>
+                  <div class="exp-item">
+                    <span class="exp-number">3</span>
+                    <span class="exp-label">Awards</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chef-card">
+            <div class="chef-main-content">
+              <div class="chef-image-container">
+                <img
+                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                  alt="Chef Anil Kumar"
+                  class="chef-image"
+                />
+              </div>
+              <div class="chef-info">
+                <h3 class="chef-name">Chef Anil Kumar</h3>
+                <p class="chef-specialty">Pastry & Desserts</p>
+                <p class="chef-bio">
+                  Creative pastry chef with expertise in traditional Indian
+                  sweets and modern dessert artistry. Transforms every meal into
+                  a sweet celebration.
+                </p>
+                <div class="chef-experience">
+                  <div class="exp-item">
+                    <span class="exp-number">12+</span>
+                    <span class="exp-label">Years</span>
+                  </div>
+                  <div class="exp-item">
+                    <span class="exp-number">100+</span>
+                    <span class="exp-label">Desserts</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Food Gallery Section -->
+    <section class="food-gallery-section">
+      <div class="food-gallery-container">
+        <h2 class="food-gallery-title">Culinary Delights</h2>
+        <p class="food-gallery-subtitle">
+          Discover our exquisite collection of handcrafted dishes, each telling
+          a story of tradition, innovation, and culinary excellence.
+        </p>
+        <div class="food-gallery-grid">
+          <div class="food-image-item">
+            <img
+              src="{% static 'images/4-Library-Bar.jpg' %}"
+              alt="Rajasthani Royal Thali"
+            />
+          </div>
+
+          <div class="food-image-item">
+            <img
+              src="{% static 'images/1-Preet-Mahal-376x376_0.jpg' %}"
+              alt="Contemporary Fusion Platter"
+            />
+          </div>
+
+          <div class="food-image-item">
+            <img
+              src="{% static 'images/5-Dining-Room.jpg' %}"
+              alt="Royal Dessert Collection"
+            />
+          </div>
+
+          <div class="food-image-item">
+            <img
+              src="{% static 'images/6-Sheesh-Mahal.jpg' %}"
+              alt="Signature Royal Kebabs"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include "foot.html" %}
+  </body>
+</html>

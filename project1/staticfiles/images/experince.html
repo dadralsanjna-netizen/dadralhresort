@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Experiences | The Oberoi Rajvilas, Jaipur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --gold: #C5A47E;
+            --maroon: #8E1E1E;
+            --cream: #F5F1E8;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --sage: #8A9A8A;
+        }
+        
+        body {
+            background-color: var(--cream);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="%23C5A47E" stroke-width="0.5" stroke-opacity="0.2"/></svg>');
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--maroon);
+        }
+        
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--maroon);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: var(--maroon);
+            margin-left: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .logo-icon {
+            color: var(--gold);
+            font-size: 32px;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin: 0 18px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-nav a:hover {
+            color: var(--maroon);
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--maroon);
+            transition: width 0.3s;
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-btn {
+            background: linear-gradient(135deg, var(--maroon), #6a1616);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(142, 30, 30, 0.25);
+            letter-spacing: 1px;
+        }
+        
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(142, 30, 30, 0.35);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 100px;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            color: #fff;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btn {
+            background: linear-gradient(135deg, var(--gold), #B08F6A);
+            color: var(--dark);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(197, 164, 126, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(197, 164, 126, 0.4);
+        }
+        
+        /* Experiences Section */
+        .experiences-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--maroon);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .section-header p {
+            color: var(--text);
+            max-width: 700px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            color: var(--maroon);
+            border: 2px solid var(--gold);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .experience-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .exp-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .exp-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+        
+        .experience-card:hover .exp-img img {
+            transform: scale(1.05);
+        }
+        
+        .exp-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 2;
+        }
+        
+        .exp-content {
+            padding: 30px;
+        }
+        
+        .exp-content h3 {
+            font-size: 1.8rem;
+            color: var(--maroon);
+            margin-bottom: 15px;
+        }
+        
+        .exp-duration {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+        
+        .exp-duration i {
+            margin-right: 10px;
+        }
+        
+        .exp-content p {
+            color: var(--text);
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        
+        .exp-features {
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 15px;
+        }
+        
+        .feature i {
+            color: var(--gold);
+            margin-right: 12px;
+            font-size: 16px;
+        }
+        
+        .exp-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+        
+        .exp-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+        
+        .exp-price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--text);
+            display: block;
+        }
+        
+        .details-btn {
+            background-color: transparent;
+            color: var(--maroon);
+            border: 2px solid var(--maroon);
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .details-btn:hover {
+            background-color: var(--maroon);
+            color: white;
+        }
+        
+        /* Cultural Immersion Section */
+        .cultural-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 100px 5%;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .cultural-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .cultural-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .cultural-content h2 {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+        
+        .cultural-content p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 0.9;
+        }
+        
+        .cultural-features {
+            margin-top: 30px;
+        }
+        
+        .cultural-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cultural-feature i {
+            font-size: 24px;
+            color: var(--gold);
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(197, 164, 126, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cultural-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .cultural-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 5%;
+            background-color: var(--cream);
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 100px;
+            color: var(--gold);
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: 0.2;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--gold);
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ddd;
+            padding: 80px 5% 30px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+        
+        .footer-col h3 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            color: var(--gold);
+            margin-right: 15px;
+            width: 20px;
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            color: var(--gold);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .exp-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 70vh;
+                margin-top: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-container {
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-main {
+                padding: 15px;
+            }
+            
+            .top-bar {
+                font-size: 12px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .experiences-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <p>LUXURY RESORT IN JAIPUR, INDIA | BOOK DIRECT FOR BEST RATES & BENEFITS</p>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h1>OBEROI RAJVILAS</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">THE RESORT</a></li>
+                    <li><a href="#">ACCOMMODATION</a></li>
+                    <li><a href="#">DINING</a></li>
+                    <li><a href="#" class="active">EXPERIENCES</a></li>
+                    <li><a href="#">WEDDINGS</a></li>
+                    <li><a href="#">OFFERS</a></li>
+                    <li><a href="#">GALLERY</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:+911412681010" class="phone">+91 141 268 1010</a>
+                <button class="book-btn">BOOK NOW</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>UNFORGETTABLE EXPERIENCES</h1>
+            <p class="cinzel">Discover the Rich Heritage and Natural Beauty of Rajasthan</p>
+            <button class="hero-btn">EXPLORE OUR EXPERIENCES</button>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section class="experiences-section">
+        <div class="section-header">
+            <h2>Curated Experiences</h2>
+            <p>Immerse yourself in the rich culture, heritage, and natural beauty of Rajasthan with our bespoke experiences</p>
+        </div>
+        
+        <div class="experience-tabs">
+            <button class="tab-btn active">All Experiences</button>
+            <button class="tab-btn">Cultural</button>
+            <button class="tab-btn">Adventure</button>
+            <button class="tab-btn">Culinary</button>
+            <button class="tab-btn">Wellness</button>
+            <button class="tab-btn">Family</button>
+        </div>
+        
+        <div class="experiences-grid">
+            <!-- Experience 1 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elephant Experience">
+                    <div class="exp-badge">CULTURAL</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Elephant Encounter</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 3 hours
+                    </div>
+                    <p>Meet and interact with gentle giants in their natural habitat. Learn about elephant conservation efforts and enjoy a memorable breakfast with these majestic creatures.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Private interaction
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Conservation talk
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Breakfast included
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Photography session
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹12,500 <span>per person</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience 2 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cooking Class">
+                    <div class="exp-badge">CULINARY</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Royal Rajasthani Cooking</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 4 hours
+                    </div>
+                    <p>Join our master chef for an intimate cooking class featuring authentic Rajasthani cuisine. Learn royal recipes passed down through generations.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Market visit
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Hands-on cooking
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Recipe booklet
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Lunch with chef
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹8,500 <span>per person</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience 3 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yoga Experience">
+                    <div class="exp-badge">WELLNESS</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Sunrise Yoga & Meditation</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 2 hours
+                    </div>
+                    <p>Begin your day with a revitalizing yoga session amidst our beautiful gardens. Led by an expert instructor, this experience includes meditation and pranayama.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Private session
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> All levels welcome
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Herbal tea service
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Wellness consultation
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹6,000 <span>per person</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience 4 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Camel Safari">
+                    <div class="exp-badge">ADVENTURE</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Desert Camel Safari</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 6 hours
+                    </div>
+                    <p>Explore the stunning desert landscape on a traditional camel safari. Experience the magic of the desert with a sunset dinner at a dunes camp.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Private safari
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Sunset cocktails
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Traditional dinner
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Folk performances
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹15,000 <span>per person</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience 5 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Private Dinner">
+                    <div class="exp-badge">ROMANTIC</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Palace Courtyard Dining</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 3 hours
+                    </div>
+                    <p>Experience an unforgettable private dinner in our palace courtyard under the stars. Enjoy personalized service and a bespoke menu.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Customized menu
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Champagne reception
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Live classical music
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Personal butler
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹22,000 <span>for two</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience 6 -->
+            <div class="experience-card">
+                <div class="exp-img">
+                    <img src="https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Block Printing">
+                    <div class="exp-badge">CULTURAL</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Traditional Block Printing</h3>
+                    <div class="exp-duration">
+                        <i class="fas fa-clock"></i> 4 hours
+                    </div>
+                    <p>Discover the ancient art of Rajasthani block printing. Visit a local workshop and create your own textile masterpiece with guidance from master artisans.</p>
+                    <div class="exp-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Artisan workshop
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Hands-on creation
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Take home creation
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i> Cultural insights
+                        </div>
+                    </div>
+                    <div class="exp-cta">
+                        <div class="exp-price">
+                            ₹7,500 <span>per person</span>
+                        </div>
+                        <button class="details-btn">DETAILS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cultural Immersion Section -->
+    <section class="cultural-section">
+        <div class="cultural-container">
+            <div class="cultural-content">
+                <h2>Cultural Immersion</h2>
+                <p>Experience the vibrant culture of Rajasthan through our curated cultural programs that showcase the rich heritage and traditions of the region.</p>
+                
+                <div class="cultural-features">
+                    <div class="cultural-feature">
+                        <i class="fas fa-music"></i>
+                        <div>
+                            <h4>Folk Performances</h4>
+                            <p>Enjoy traditional dance and music performances by local artists in our palace courtyard.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cultural-feature">
+                        <i class="fas fa-chess-rook"></i>
+                        <div>
+                            <h4>Fort & Palace Tours</h4>
+                            <p>Private guided tours of Jaipur's magnificent forts and palaces with expert historians.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cultural-feature">
+                        <i class="fas fa-turban"></i>
+                        <div>
+                            <h4>Turban Tying & Sari Draping</h4>
+                            <p>Learn the art of traditional Rajasthani attire with our expert stylists.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cultural-feature">
+                        <i class="fas fa-paint-brush"></i>
+                        <div>
+                            <h4>Miniature Painting Workshop</h4>
+                            <p>Create your own masterpiece with guidance from local miniature painting artists.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="hero-btn">EXPLORE CULTURAL EXPERIENCES</button>
+            </div>
+            <div class="cultural-image">
+                <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Experience">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Guest Experiences</h2>
+            <p>Discover what our guests have to say about their unforgettable experiences at The Oberoi Rajvilas</p>
+        </div>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "The Elephant Encounter was the highlight of our trip! Getting to interact with these gentle giants in such a respectful environment was truly magical. The conservation talk was eye-opening and the breakfast experience was delightful."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Elephant Encounter Experience</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "Our private dinner in the palace courtyard was beyond anything we could have imagined. The setting was straight out of a fairytale, the food was exquisite, and the service was impeccable. It was the perfect way to celebrate our anniversary."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Robert Chen</h4>
+                            <p>Palace Courtyard Dining</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "The block printing workshop was an incredible cultural immersion. The artisans were so knowledgeable and patient, and coming home with my own creation was so special. It gave me a deep appreciation for this traditional craft."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Sharma">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Traditional Block Printing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Goner Road, Jaipur - 302031, Rajasthan, India</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <p>+91 141 268 1010</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>experiences.rajvilas@oberoihotels.com</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Experiences</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-ellipsis-h"></i> Cultural Experiences</a></li>
+                    <li><a href="#"><i class="fas fa-hiking"></i> Adventure Activities</a></li>
+                    <li><a href="#"><i class="fas fa-utensils"></i> Culinary Journeys</a></li>
+                    <li><a href="#"><i class="fas fa-spa"></i> Wellness Retreats</a></li>
+                    <li><a href="#"><i class="fas fa-child"></i> Family Activities</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> Romantic Experiences</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Special Offers</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-gift"></i> Experience Packages</a></li>
+                    <li><a href="#"><i class="fas fa-calendar"></i> Seasonal Experiences</a></li>
+                    <li><a href="#"><i class="fas fa-percent"></i> Advance Booking Discount</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Group Experience Rates</a></li>
+                    <li><a href="#"><i class="fas fa-ring"></i> Honeymoon Experiences</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to receive exclusive offers and updates about our luxury experiences</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address" style="width: 100%; padding: 14px; margin: 15px 0; border-radius: 4px; border: none; font-size: 15px;">
+                    <button class="book-btn" style="width: 100%;">SUBSCRIBE</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 The Oberoi Rajvilas, Jaipur. All Rights Reserved. | Privacy Policy | Terms of Use</p>
+        </div>
+    </footer>
+</body>
+</html>

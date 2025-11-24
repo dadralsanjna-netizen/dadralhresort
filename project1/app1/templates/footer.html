@@ -1,0 +1,267 @@
+{% load static %}
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="/index">
+        <img
+          src="{% static 'images/logo-1.png' %}"
+          alt="Logo"
+          class="footer-logo"
+        />
+      </a>
+      <p class="footer-desc">
+        Experience luxury and heritage at our palace hotel. Unforgettable stays,
+        royal hospitality, and timeless elegance await you.
+      </p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/amantie">Amenities</a></li>
+        <li><a href="/dinning">Dining</a></li>
+        <li><a href="/rooms">Rooms &amp; Suites</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/book">Book Now</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><i class="fa fa-map-marker"></i> Jaipur, Rajasthan, India</p>
+      <p>
+        <i class="fa fa-phone"></i>
+        <a href="tel:+911234567890">+91 12345 67890</a>
+      </p>
+      <p>
+        <i class="fa fa-envelope"></i>
+        <a href="mailto:info@heritagepalace.com">info@heritagepalace.com</a>
+      </p>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener"
+          ><i class="fab fa-twitter"></i
+        ></a>
+      </div>
+    </div>
+    <div class="footer-subscribe">
+      <h4>Subscribe</h4>
+      <form method="POST" action="/subscribe/" class="subscribe-form">
+        {% csrf_token %}
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="subscribe-msg">Get exclusive offers & updates!</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Heritage Palace. All rights reserved.</p>
+  </div>
+</footer>
+<style></style>
+<style>
+  .site-footer {
+    background: linear-gradient(120deg, #5a4a3a 60%, #b38a58 100%);
+    color: #f8f4e9;
+    padding: 48px 0 0 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    margin-top: 60px;
+    box-shadow: 0 -2px 16px rgba(90, 74, 58, 0.12);
+  }
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    gap: 32px;
+  }
+  .footer-brand {
+    flex: 1 1 220px;
+    min-width: 200px;
+    margin-bottom: 32px;
+  }
+  .footer-logo {
+    height: 60px;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 2px 8px #b38a58) brightness(0.95) sepia(0.2)
+      saturate(2) hue-rotate(-10deg);
+  }
+  .footer-desc {
+    font-size: 1.05rem;
+    color: #f0e6d2;
+    margin-bottom: 0;
+  }
+  .footer-links {
+    flex: 1 1 160px;
+    min-width: 140px;
+    margin-bottom: 32px;
+  }
+  .footer-links h4 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #ffd700;
+    letter-spacing: 1px;
+  }
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-links ul li {
+    margin-bottom: 8px;
+  }
+  .footer-links ul li a {
+    color: #f8f4e9;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+  }
+  .footer-links ul li a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+  }
+  .footer-contact {
+    flex: 1 1 180px;
+    min-width: 140px;
+    margin-bottom: 32px;
+  }
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #ffd700;
+  }
+  .footer-contact p {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    color: #f0e6d2;
+  }
+  .footer-contact i {
+    margin-right: 8px;
+    color: #ffd700;
+  }
+  .footer-social {
+    margin-top: 10px;
+  }
+  .footer-social a {
+    color: #ffd700;
+    margin-right: 12px;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+  }
+  .footer-social a:hover {
+    color: #f8f4e9;
+  }
+  .footer-subscribe {
+    flex: 1 1 220px;
+    min-width: 180px;
+    margin-bottom: 32px;
+  }
+  .footer-subscribe h4 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #ffd700;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1 1 auto;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    outline: none;
+  }
+  .subscribe-form button {
+    padding: 8px 18px;
+    background: #ffd700;
+    color: #5a4a3a;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .subscribe-form button:hover {
+    background: #b38a58;
+    color: #fff;
+  }
+  .subscribe-msg {
+    font-size: 0.98rem;
+    color: #f0e6d2;
+  }
+  .footer-bottom {
+    text-align: center;
+    padding: 18px 0 8px 0;
+    background: #b38a58;
+    color: #f8f4e9;
+    font-size: 1rem;
+    margin-top: 16px;
+    letter-spacing: 0.5px;
+  }
+  @media (max-width: 900px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 8px;
+      gap: 0;
+    }
+    .footer-brand,
+    .footer-links,
+    .footer-contact,
+    .footer-subscribe {
+      min-width: 0;
+      width: 100%;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+  }
+  @media (max-width: 600px) {
+    .site-footer {
+      padding: 20px 0 0 0;
+    }
+    .footer-logo {
+      height: 36px;
+    }
+    .footer-container {
+      padding: 0 4px;
+    }
+    .footer-desc {
+      font-size: 0.95rem;
+    }
+    .footer-bottom {
+      font-size: 0.9rem;
+      padding: 10px 0 4px 0;
+    }
+    .footer-links ul li a,
+    .footer-contact p,
+    .footer-contact a,
+    .subscribe-form input,
+    .subscribe-form button {
+      font-size: 0.98rem;
+    }
+    .subscribe-form {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .subscribe-form input[type="email"],
+    .subscribe-form button {
+      border-radius: 4px;
+    }
+  }
+</style>

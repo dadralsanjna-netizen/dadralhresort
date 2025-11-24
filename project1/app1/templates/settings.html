@@ -1,0 +1,227 @@
+{% extends "dashboard.html" %} {% load static %} {% block dashboard_content %}
+<div class="dashboard-header">
+  <div class="header-title">Settings</div>
+</div>
+
+<div class="settings-container">
+  {% for section in settings_sections %}
+  <div class="settings-section dashboard-section">
+    <div class="section-header">
+      <h2><i class="fas {{ section.icon }}"></i> {{ section.title }}</h2>
+    </div>
+    <div class="settings-form">
+      {% for setting in section.settings %}
+      <div class="form-group">
+        <label for="{{ setting.name }}">{{ setting.label }}</label>
+        {% if setting.type == 'text' or setting.type == 'email' %}
+        <input
+          type="{{ setting.type }}"
+          id="{{ setting.name }}"
+          name="{{ setting.name }}"
+          value="{{ setting.value }}"
+          class="form-control"
+        />
+        {% elif setting.type == 'checkbox' %}
+        <div class="toggle-switch">
+          <input
+            type="checkbox"
+            id="{{ setting.name }}"
+            name="{{ setting.name }}"
+            {%
+            if
+            setting.value
+            %}checked{%
+            endif
+            %}
+          />
+          <label for="{{ setting.name }}" class="toggle-label"></label>
+        </div>
+        {% elif setting.type == 'button' %}
+        <button
+          type="button"
+          class="settings-btn"
+          data-action="{{ setting.action }}"
+        >
+          {{ setting.label }}
+        </button>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+  .settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .settings-section {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .settings-section .section-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(139, 107, 61, 0.1);
+  }
+
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    color: #2c1e1e;
+    font-size: 1.2rem;
+  }
+
+  .section-header h2 i {
+    color: #c6a664;
+    font-size: 1.1em;
+  }
+
+  .settings-form {
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-group label {
+    color: #2c1e1e;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .form-control {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid rgba(139, 107, 61, 0.2);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #2c1e1e;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #c6a664;
+    box-shadow: 0 0 0 2px rgba(198, 166, 100, 0.1);
+  }
+
+  /* Toggle Switch */
+  .toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .toggle-label {
+    background-color: #c6a664;
+  }
+
+  input:checked + .toggle-label:before {
+    transform: translateX(24px);
+  }
+
+  /* Settings Button */
+  .settings-btn {
+    background: #c6a664;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .settings-btn:hover {
+    background: #8b6b3d;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .form-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+    }
+
+    .toggle-switch {
+      margin-top: 8px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Handle button actions
+    const actionButtons = document.querySelectorAll("[data-action]");
+    actionButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const action = this.dataset.action;
+        if (action === "change_password") {
+          window.location.href = "{% url 'forgot' %}";
+        }
+      });
+    });
+
+    // Handle form changes
+    const formInputs = document.querySelectorAll("input");
+    formInputs.forEach((input) => {
+      input.addEventListener("change", function () {
+        // Save changes automatically
+        console.log(`Setting ${this.name} changed to:`, this.value);
+        // You can add AJAX call here to save changes
+      });
+    });
+  });
+</script>
+{% endblock %}

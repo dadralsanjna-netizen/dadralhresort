@@ -1,0 +1,413 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Rooms | Heritage Palace</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f7f4;
+        color: #5a4635;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+       :root {
+        --gold: #d4af37;
+        --dark-gold: #b38a58;
+        --light-gold: #f0e6d2;
+        --brown: #5a4a3a;
+        --light-brown: #8b6b3d;
+        --off-white: #f8f4e9;
+      }
+     
+      /* Hero space */
+    .hero1 {
+      background-image: url("{% static 'images/2025-royal-suite-living-room-1151x500-1.jpg' %}"); /* Replace with actual palace image */
+          background-size: cover;
+          background-position: center;
+          height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+        a{
+          text-decoration: none   ;
+        }
+      
+
+     
+      /* Header Styles */
+      header {
+        background: linear-gradient(to right, #8b4513, #b8860b);
+        color: #fff8e1;
+        padding: 25px 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .logo span {
+        color: #d4af37;
+      }
+
+     
+      .hero-content {
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #fff8e1;
+      }
+
+      .hero-content p {
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        text-align: center;
+        padding: 40px 0 20px;
+        font-size: 36px;
+        color: #2c1f14;
+        font-weight: 700;
+      }
+
+      .intro-text {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        font-size: 18px;
+        color: #4a3a2a;
+        font-weight: 500;
+      }
+
+      .room-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 40px 40px;
+      }
+
+      .room-card {
+        background: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        border: 1px solid #e8e3dc;
+        width: calc(33.33% - 20px);
+        min-width: 300px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .room-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .room-card img {
+        width: 100%;
+        height: 305px;
+        object-fit: cover;
+      }
+
+      .room-info {
+        padding: 25px;
+      }
+
+      .room-info h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        margin: 0 0 15px;
+        color: #2c1f14;
+        font-weight: 700;
+      }
+
+      .room-info p {
+        font-size: 16px;
+        color: #3d2f21;
+        margin-bottom: 20px;
+        font-weight: 400;
+        line-height: 1.7;
+      }
+
+      .room-icons {
+        margin: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .room-icons div {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        color: #654321;
+        font-weight: 500;
+        width: calc(50% - 15px);
+      }
+
+      .room-icons i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+        color: #8b4513;
+      }
+
+      .price {
+        font-size: 22px;
+        color: #654321;
+        font-weight: 700;
+        margin: 20px 0;
+      }
+
+      .book-btn {
+        background-color: #2c1e1e;
+        color: #fff8e1;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 8px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+        text-align: center;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px rgba(176, 141, 87, 0.3);
+      }
+
+      .book-btn:hover {
+        color:#2c1e1e;
+        background-color:#fff8e1 ;
+        box-shadow: 0 6px 12px rgba(176, 141, 87, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* footer {
+        background: linear-gradient(to right, #5a4635, #8b4513);
+        color: #fff8e1;
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 50px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        width: 30%;
+        min-width: 250px;
+        margin-bottom: 20px;
+      }
+
+      .footer-section h3 {
+        font-family: "Playfair Display", serif;
+        margin-bottom: 15px;
+        color: #d4af37;
+      }
+
+      .copyright {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #c4b5a0;
+      }  */
+
+      @media (max-width: 1200px) {
+        .room-row {
+          padding: 0 20px;
+        }
+        .room-card {
+          width: calc(50% - 20px);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .room-row {
+          padding: 0 15px;
+        }
+        .room-card {
+          width: calc(100% - 30px);
+          max-width: 500px;
+        }
+        .hero1 {
+          height: 300px;
+        }
+        .hero-content h1 {
+          font-size: 36px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .room-row {
+          padding: 0 10px;
+          gap: 20px;
+        }
+        .room-card {
+          width: 100%;
+        }
+        .room-icons div {
+          width: 100%;
+        }
+
+        .footer-section {
+          width: 100%;
+        }
+
+        .hero1 {
+          height: 250px;
+        }
+
+        .hero-content h1 {
+          font-size: 28px;
+        }
+
+        .hero-content p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+   
+    <header class="hero1">
+    <!-- Header Include -->
+    <div id="header-placeholder"></div>
+    {% include "header.html" %}
+
+    </header>
+<section class="rooms-header">
+      <div class="header-title">
+        
+      <div class="subtext">
+         <h1>Our Luxury Rooms</h1>
+      <p class="intro-text">
+        Discover our exquisite collection of rooms and suites, each thoughtfully
+        designed to provide an unforgettable experience of luxury and comfort
+        with a touch of Indian heritage.
+      </p> 
+  <img src="{% static 'images/divider.svg' %}" />
+
+      </div>
+    </section>
+
+    <!-- Hero Section
+    <header class="hero1">
+      <div class="hero-content">
+        <h1>Experience Unparalleled Luxury</h1>
+        <p>
+          Indulge in our exquisite accommodations with world-class amenities
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Our Luxury Rooms</h1>
+      <p class="intro-text">
+        Discover our exquisite collection of rooms and suites, each thoughtfully
+        designed to provide an unforgettable experience of luxury and comfort
+        with a touch of Indian heritage.
+      </p> -->
+
+      <!-- Row 1 -->
+      <div class="room-row">
+        {% for i in dd %}
+        <div class="room-card">
+          <img
+            src="{{i.image}}"
+            alt="Royal Suite"
+          />
+          <div class="room-info">
+            <h2>{{i.name}}</h2>
+            <p>
+              Experience regal luxury in our spacious suite with a private
+              balcony offering panoramic city views, luxury bath with golden
+              fixtures, and personalized butler service.
+            </p>
+            <div class="room-icons">
+              <div><i class="fas fa-wifi"></i> Free High-Speed WiFi</div>
+              <div><i class="fas fa-tv"></i> 55" Smart TV</div>
+              <div><i class="fas fa-concierge-bell"></i> Butler Service</div>
+              <div><i class="fas fa-wine-glass"></i> Mini Bar</div>
+            </div>
+            <div class="price">Rs. {{i.price}} / night</div>
+        <a href="{% if user.is_authenticated %}{% url 'cart' i.id %}{% else %}{% url 'logins' %}?next={% url 'cart' i.id %}{% endif %}">
+  <button class="book-btn">Book Now</button>
+</a>
+
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      
+          <!-- <img
+            src="{% static 'images/dulex.jpg' %}"
+            alt="Deluxe Room"
+          />
+          <div class="room-info">
+            <h2>Deluxe Room</h2>
+            <p>
+              Elegant room with a king-sized bed, soft ambient lighting, premium
+              amenities, and a comfortable seating area for relaxation after a
+              long day.
+            </p>
+            <div class="room-icons">
+              <div><i class="fas fa-wifi"></i> Free WiFi</div>
+              <div><i class="fas fa-coffee"></i> Coffee Maker</div>
+              <div><i class="fas fa-snowflake"></i> Air Conditioning</div>
+              <div><i class="fas fa-bath"></i> Luxury Toiletries</div>
+            </div>
+            <div class="price">Rs. 13,300 / night</div>
+         
+          </div>
+        </div>  -->
+      <!-- </div> -->
+
+         <div id="footer-placeholder"></div>
+    {% include "foot.html" %}
+  </body>
+</html>

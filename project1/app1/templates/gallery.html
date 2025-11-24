@@ -1,0 +1,406 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery Section</title>
+   
+    <style>
+      body {
+        margin: 0;
+        font-family: "Georgia", serif;
+        background-color: #fff;
+      }
+      a {
+        text-decoration: none;
+      }
+      .gallery-hero-section {
+        background: linear-gradient(
+            rgba(248, 246, 246, 0.6),
+            rgba(246, 246, 246, 0.6)
+          ),
+          url("{% static 'images/gallery-header-bg.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        /* padding: 20px 20px 80px; */
+        text-align: center;
+        color: #fff;
+        margin-top: 20px;
+        height: 280px;
+      }
+
+      .gallery-hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .gallery-main-title {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        margin-bottom: 25px;
+        color: #6b5d0b;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      }
+
+      .gallery-intro-text {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        margin-bottom: 35px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.95;
+        font-weight: 300;
+      }
+
+      .gallery-divider {
+        width: 120px;
+        height: auto;
+        opacity: 0.9;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .gallery-hero-section {
+          padding: 100px 20px 60px;
+          margin-top: 70px;
+        }
+
+        .gallery-main-title {
+          font-size: 2.5rem;
+          margin-bottom: 20px;
+        }
+
+        .gallery-intro-text {
+          font-size: 1.1rem;
+          margin-bottom: 25px;
+        }
+
+        .gallery-divider {
+          width: 100px;
+        }
+      }
+      /* Reduced top margin and height */
+      .hero2 {
+        /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          /* url("{% static 'images/hero9.jpeg' %}"); 
+            url("{% static 'images/hero9.jpeg' %}"); */
+
+        background: linear-gradient(
+            rgba(250, 248, 248, 0.4),
+            rgba(162, 162, 162, 0.4)
+          ),
+          url("{% static 'images/hero9.jpg' %}");
+        /* height: 400px; */
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px 60px; /* Reduced padding */
+        text-align: center;
+        color: #fff;
+        position: relative;
+        height: 70vh; /* Reduced from 70vh to 50vh */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* margin-top: 70px; Reduced from 90px to 70px */
+      }
+
+      .hero2::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .hero2 h1 {
+        position: relative;
+        z-index: 1;
+        font-family: "Playfair Display", serif;
+        font-size: 3rem; /* Slightly smaller font */
+        margin: 0;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery-header {
+        background: linear-gradient(135deg, #b38a58 0%, #8b6b3d 100%);
+        color: white;
+        text-align: center;
+        padding: 40px 20px; /* Reduced padding */
+        margin-bottom: 30px; /* Reduced margin */
+      }
+
+      .gallery-header h1 {
+        font-size: 36px; /* Smaller font */
+        margin: 0;
+        color: white;
+        font-family: "Playfair Display", serif;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Reduced image sizes and spacing */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* Smaller min size */
+        gap: 15px; /* Reduced gap */
+        padding: 20px; /* Reduced padding */
+        background-color: #fff;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: relative;
+        height: 300px; /* Reduced from 400px to 300px */
+        border-radius: 12px; /* Slightly smaller radius */
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-3px); /* Smaller hover effect */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.03); /* Smaller zoom effect */
+      }
+
+      .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0)
+        );
+        color: #fff;
+        padding: 20px 15px 15px; /* Reduced padding */
+        text-align: center;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .caption {
+        transform: translateY(0);
+      }
+
+      .caption h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 20px; /* Smaller font */
+        margin: 0 0 8px; /* Reduced margin */
+        color: #fff;
+      }
+
+      .caption p {
+        font-size: 14px; /* Smaller font */
+        margin: 0;
+        opacity: 0.9;
+        line-height: 1.5; /* Tighter line height */
+      }
+
+      /* Remove the extra spacing div */
+      /* <div style="height: 80px"></div> - This is creating extra space */
+
+      @media (max-width: 768px) {
+        .gallery-header h1 {
+          font-size: 28px;
+        }
+
+        .hero2 {
+          height: 40vh; /* Even smaller on mobile */
+          /* margin-top: 60px;  Less margin on mobile */ 
+          padding: 60px 20px 40px;
+        }
+
+        .hero2 h1 {
+          font-size: 2.5rem;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+          ); /* Smaller on mobile */
+          gap: 12px;
+          padding: 15px;
+        }
+
+        .gallery-item {
+          height: 250px; /* Smaller on mobile */
+        }
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 60px auto; /* Reduced margin */
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+
+      .card {
+        flex: 1 1 200px;
+        margin: 15px; /* Reduced margin */
+      }
+
+      .icon {
+        font-size: 35px; /* Slightly smaller */
+        color: #bfa77f;
+      }
+
+      .rating {
+        font-size: 28px; /* Slightly smaller */
+        font-weight: bold;
+        margin-top: 8px; /* Reduced margin */
+      }
+
+      .title {
+        font-size: 13px; /* Slightly smaller */
+        font-weight: 600;
+        margin-top: 4px; /* Reduced margin */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .subtitle {
+        font-size: 13px; /* Slightly smaller */
+        color: #555;
+        margin-top: 4px; /* Reduced margin */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="heros">
+      <div id="header-placeholder"></div>
+      {% include "header.html" %}
+    </div>
+    <!-- </header> -->
+
+    <div></div>
+
+    <!-- Hero Section -->
+    <section class="hero2">
+      <!-- <h1>Gallery</h1> -->
+    </section>
+    <section class="gallery-hero-section">
+      <div class="gallery-hero-content">
+        <h1 class="gallery-main-title">Our Gallery</h1>
+        <p class="gallery-intro-text">
+          Explore the captivating beauty and royal elegance of Dadrah Resort
+          through our visual journey, showcasing exquisite architecture,
+          luxurious amenities, and unforgettable experiences.
+        </p>
+        <img
+          src="{% static 'images/divider.svg' %}"
+          alt="Divider"
+          class="gallery-divider"
+        />
+      </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {% for image in images %}
+      <div class="gallery-item">
+        <img
+          src="{{ image.image.url }}"
+          alt="{{ image.title|default:'Gallery Image' }}"
+        />
+        <div class="caption">
+          {% if image.title %}
+          <h3>{{ image.title }}</h3>
+          {% endif %} {% if image.description %}
+          <p>{{ image.description }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- <div class="gallery-item">
+  <img src="{% static 'images/gallery-image5.jpeg' %}" alt="Conference Room" />
+  <div class="caption">
+    <h3>Conference Room</h3>
+    <p>Perfectly designed spaces for meetings and corporate events.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+
+      <!-- <div class="gallery-item">
+  <img src="{% static 'images/gallery-image6.jpeg' %}" alt="Garden View" />
+  <div class="caption">
+    <h3>Garden View</h3>
+    <p>Relax in nature’s lap with lush greenery and peaceful surroundings.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+
+      <!-- <div class="gallery-item">
+  <img src="{% static 'images/gallery-image7.jpeg' %}" alt="Banquet Hall" />
+  <div class="caption">
+    <h3>Banquet Hall</h3>
+    <p>A spacious venue for grand celebrations and memorable gatherings.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+
+      <!-- <div class="gallery-item">
+  <img src="{% static 'images/gallery-image8.jpeg' %}" alt="Courtyard" />
+  <div class="caption">
+    <h3>Courtyard</h3>
+    <p>A serene open-air courtyard designed for relaxation and leisure.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+
+      <!-- <div class="gallery-item"> -->
+      <!-- <img src="{% static 'images/gallery-image9.jpeg' %}" alt="Traditional Decor" />
+  <div class="caption">
+    <h3>Traditional Decor</h3>
+    <p>Experience timeless heritage with exquisite handcrafted interiors.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+
+      <!-- <div class="gallery-item">
+  <img src="{% static 'images/gallery-image10.jpeg' %}" alt="Palace Exterior" />
+  <div class="caption">
+    <h3>Palace Exterior</h3>
+    <p>Marvel at the stunning architecture of our majestic palace.</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+</div> -->
+      <!-- 
+<div class="gallery-item">
+  <img src="{% static 'images/gallery-image11.jpeg' %}" alt="Royal Heritage Hall" />
+  <div class="caption"> -->
+      <!-- <h3>Royal Heritage Hall</h3>
+    <p>Chandeliers, fine drapery, and regal décor for royal occasions.</p>
+    <button class="book-btn">Book Now</button>
+  </div> -->
+      <!-- </div>  -->
+    </div>
+
+    <div id="footer-placeholder"></div>
+    {% include "foot.html" %}
+  </body>
+</html>

@@ -1,0 +1,554 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Raj Vilas Palace - Book Now</title>
+    <style>
+      :root {
+        --gold: #d4af37;
+        --dark-gold: #b38a58;
+        --light-gold: #f0e6d2;
+        --brown: #5a4a3a;
+        --light-brown: #8b6b3d;
+        --off-white: #f8f4e9;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f6f0;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #8b4513;
+      }
+      .container {
+        background: #fff;
+        padding: 25px;
+        margin-top: 80px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+      .room-card {
+        display: flex;
+        gap: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+      .room-card img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+      .room-info {
+        flex: 1;
+      }
+      .room-price {
+        font-size: 1.2em;
+        color: #8b4513;
+        font-weight: bold;
+      }
+      .btn-select {
+        background-color: #8b4513;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .btn-select:hover {
+        background-color: #a0522d;
+      }
+      .guest-counter {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .counter-btn {
+        background: #8b4513;
+        color: white;
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .counter-value {
+        min-width: 20px;
+        text-align: center;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .cart {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      .btn-book {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+      .btn-book:hover {
+        background-color: #45a049;
+      }
+      .payment-method {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+        flex-wrap: wrap;
+      }
+      .payment-option {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .selected-room-img {
+        width: 100px;
+        height: 75px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+      .hidden {
+        display: none;
+      }
+      .options-container {
+        width: 80%;
+        margin: 15px 0;
+      }
+      .option-item {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+      }
+      .option-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--light-brown);
+        position: absolute;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        text-decoration: none;
+        height: 90px;
+        padding: 0;
+        left: 0;
+      }
+      .logo {
+        font-size: 16px;
+        font-weight: 500;
+        width: 40%;
+        padding: 20px;
+      }
+      .logo img {
+        height: 50px;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.4rem;
+        width: 40%;
+        margin-left: 20px;
+      }
+      .nav-links li {
+        cursor: pointer;
+        text-decoration: none;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .book-btn {
+        padding: 14px 12px;
+        border: 1px solid white;
+        cursor: pointer;
+        border-radius: 10px;
+        font-size: 14px;
+        color: white;
+        font-weight: 600;
+        margin-right: 40px;
+        background-color: transparent;
+      }
+      .book-btn:hover {
+        color: #cbac7e;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index">Home</a></li>
+        <li><a href="gallery">Gallery</a></li>
+        <li><a href="amenties">Amenities</a></li>
+        <li><a href="dinning">Dining</a></li>
+        <li><a href="rooms">Rooms & Suites</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+      <div class="logo">
+        <img src="{% static 'images/site-logo (1).svg' %}" />
+      </div>
+      <a href="logins" class="book-btn">Book Now</a>
+    </nav>
+
+    <div class="container">
+      <h1>Hotel Raj Vilas Palace - Book Now</h1>
+
+      <div id="loading-rooms" class="hidden">
+        <p>Loading rooms...</p>
+      </div>
+
+      <div id="rooms-container"></div>
+
+      <div id="booking-form">
+        <h2>Booking Details</h2>
+
+        <h3>Check-In & Check-Out</h3>
+        <form action="" method="post">
+          {% csrf_token %}
+           <input type="hidden" name="room_id" value="{{ id }}">
+        <div class="form-group">
+          <label for="checkin">Check-In Date:</label>
+          <input type="date" id="checkin" name="checkin" required />
+        </div>
+        <div class="form-group">
+          <label for="checkout">Check-Out Date:</label>
+          <input type="date" id="checkout" name="checkout" required />
+        </div>
+        <div class="form-group">
+          <label for="checkout">Number-Of-Guests:</label>
+          <input type="number" id="" name="guest" required />
+        </div>
+        <div class="form-group">
+          <label for="nights">Total Nights:</label>
+          <input type="number" id="" name="nights" >
+        </div>
+
+        <h3>Guest Information</h3>
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="requests">Special Requests:</label>
+          <textarea id="requests" name="requests" rows="3"></textarea>
+          <button type="submit" id="submit-booking" class="btn-book">Book Now</button>
+        </div>
+        </form>
+
+        <!-- <div class="cart">
+          <h2>Cart Summary</h2>
+
+          <div
+            id="selected-room-display"
+            class="hidden"
+            style="display: flex; align-items: center; margin-bottom: 15px"
+          >
+            <img id="selected-room-img" class="selected-room-img" src="" />
+            <div>
+              <p>
+                <strong>Room Type:</strong>
+                <span id="selected-room">{{d.name}}</span>
+              </p>
+              <p>
+                <strong>Guests:</strong>
+                <span id="selected-guests">{{m.guest}}</span>
+              </p>
+              <p>
+                <strong>Price per Night:</strong> ₹<span id="room-price">{{d.price}}</span>
+              </p>
+            </div>
+          </div>
+          <p><strong>Total Nights:</strong> <span id="total-nights">0</span></p>
+          <p><strong>Subtotal:</strong> ₹<span id="subtotal">0</span></p>
+
+          <div class="options-container">
+            <h3>Additional Services (Optional)</h3>
+            <div class="option-item">
+              <input type="checkbox" id="breakfast" name="breakfast" />
+              <label for="breakfast"
+                >Breakfast Buffet (₹500 per person/day)</label
+              >
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="spa" name="spa" />
+              <label for="spa">Spa Package (₹2,500 per session)</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" id="transfer" name="transfer" />
+              <label for="transfer">Airport Transfer (₹1,200 one-way)</label>
+            </div>
+          </div>
+
+          <h3>Total Amount: ₹<span id="total-amount">0</span></h3>
+        </div> -->
+
+        <!-- <h2>Payment Method</h2>
+        <div class="payment-method">
+          <div class="payment-option">
+            <input
+              type="radio"
+              id="credit-card"
+              name="payment"
+              value="credit_card"
+              checked
+            />
+            <label for="credit-card"> Credit/Debit Card</label>
+          </div>
+          <div class="payment-option">
+            <input type="radio" id="upi" name="payment" value="upi" />
+            <label for="upi"> UPI (Paytm/Google Pay/PhonePe)</label>
+          </div>
+          <div class="payment-option">
+            <input
+              type="radio"
+              id="netbanking"
+              name="payment"
+              value="netbanking"
+            />
+            <label for="netbanking"> Net Banking</label>
+          </div>
+          <div class="payment-option">
+            <input type="radio" id="cash" name="payment" value="cash" />
+            <label for="cash"> Pay at Hotel (Cash/Card)</label>
+          </div>
+        </div> -->
+
+       
+        <p>
+          By proceeding, you agree to our <a href="#">Cancellation Policy</a> &
+          <a href="#">Terms of Service</a>.
+        </p>
+      </div>
+
+      <div id="booking-success" class="hidden">
+        <h2 style="color: #4caf50">Booking Confirmed!</h2>
+        <p>
+          Thank you for your reservation. A confirmation email has been sent to
+          <span id="confirmation-email"></span>.
+        </p>
+        <div id="booking-details"></div>
+      </div>
+    </div>
+
+    <script>
+      // Global variables
+      let selectedRoom = null;
+
+      // DOM Elements
+      const roomsContainer = document.getElementById('rooms-container');
+      const loadingRooms = document.getElementById('loading-rooms');
+      const bookingForm = document.getElementById('booking-form');
+      const bookingSuccess = document.getElementById('booking-success');
+
+      // Fetch rooms from Django API
+      async function loadRooms() {
+        try {
+          loadingRooms.classList.remove('hidden');
+          roomsContainer.innerHTML = '';
+
+          const response = await fetch('/api/rooms/');
+          if (!response.ok) throw new Error('Network response was not ok');
+
+          const rooms = await response.json();
+
+          if (rooms.length === 0) {
+            roomsContainer.innerHTML =
+              '<p>No rooms available at this time.</p>';
+            return;
+          }
+
+          rooms.forEach(room => {
+            const roomCard = document.createElement('div');
+            roomCard.className = 'room-card';
+            roomCard.innerHTML = `
+              <img src="${
+                room.image_url ||
+                'https://via.placeholder.com/200x150?text=Room+Image'
+              }" alt="${room.name}">
+              <div class="room-info">
+                  <h3>${room.name}</h3>
+                  <p>${room.description}</p>
+                  <div class="guest-counter">
+                      <label>Adults:</label>
+                      <button class="counter-btn minus-adult">-</button>
+                      <span class="counter-value adult-count" data-max="${
+                        room.max_adults
+                      }">1</span>
+                      <button class="counter-btn plus-adult">+</button>
+                      <label style="margin-left: 15px;">Children:</label>
+                      <button class="counter-btn minus-child">-</button>
+                      <span class="counter-value child-count" data-max="${
+                        room.max_children || 2
+                      }">0</span>
+                      <button class="counter-btn plus-child">+</button>
+                  </div>
+              </div>
+              <div style="text-align: right;">
+                  <div class="room-price">₹${room.price}/night</div>
+                  <button class="btn-select"
+                          data-room-id="${room.id}"
+                          data-room-name="${room.name}"
+                          data-room-price="${room.price}"
+                          data-room-image="${
+                            room.image_url ||
+                            'https://via.placeholder.com/200x150?text=Room+Image'
+                          }">
+                      Select
+                  </button>
+              </div>
+          `;
+            roomsContainer.appendChild(roomCard);
+          });
+
+          attachEventListeners();
+        } catch (error) {
+          console.error('Failed to load rooms:', error);
+          roomsContainer.innerHTML =
+            '<p>Error loading rooms. Please try again later.</p>';
+        } finally {
+          loadingRooms.classList.add('hidden');
+        }
+      }
+
+      // Attach event listeners
+      function attachEventListeners() {
+        // Adult counters
+        document.querySelectorAll('.plus-adult').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const counter = this.previousElementSibling;
+            let value = parseInt(counter.textContent);
+            const maxAdults = parseInt(counter.getAttribute('data-max'));
+            if (value < maxAdults) {
+              counter.textContent = value + 1;
+            }
+          });
+        });
+
+        document.querySelectorAll('.minus-adult').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const counter = this.nextElementSibling;
+            let value = parseInt(counter.textContent);
+            if (value > 1) {
+              counter.textContent = value - 1;
+            }
+          });
+        });
+
+        // Child counters
+        document.querySelectorAll('.plus-child').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const counter = this.previousElementSibling;
+            let value = parseInt(counter.textContent);
+            const maxChildren = parseInt(counter.getAttribute('data-max'));
+            if (value < maxChildren) {
+              counter.textContent = value + 1;
+            }
+          });
+        });
+
+        document.querySelectorAll('.minus-child').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const counter = this.nextElementSibling;
+            let value = parseInt(counter.textContent);
+            if (value > 0) {
+              counter.textContent = value - 1;
+            }
+          });
+        });
+
+        // Room selection
+        document.querySelectorAll('.btn-select').forEach(button => {
+          button.addEventListener('click', function () {
+            const roomCard = this.closest('.room-card');
+            selectedRoom = {
+              id: this.getAttribute('data-room-id'),
+              name: this.getAttribute('data-room-name'),
+              price: parseFloat(this.getAttribute('data-room-price')),
+              image: this.getAttribute('data-room-image'),
+              adults: parseInt(
+                roomCard.querySelector('.adult-count').textContent
+              ),
+              children: parseInt(
+                roomCard.querySelector('.child-count').textContent
+              ),
+            };
+
+            updateSelectedRoomDisplay();
+          });
+        });
+      }
+
+      // Update selected room in cart
+      function updateSelectedRoomDisplay() {
+        if (!selectedRoom) return;
+
+        const display = document.getElementById('selected-room-display');
+        display.classList.remove('hidden');
+
+        document.getElementById('selected-room-img').src = selectedRoom.image;
+        document.getElementById('selected-room').textContent =
+          selectedRoom.name;
+        document.getElementById(
+          'selected-guests'
+        ).textContent = `${selectedRoom.adults} Adults, ${selectedRoom.children} Children`;
+        document.getElementById('room-price').textContent =
+          selectedRoom.price.toFixed(2);
+
+        calculateTotal();
+      }
+
+      // Calculate total
+      function calculateTotal() {
+        if (!selectedRoom) return;
+
+        const checkin = new Date(document.getElementById('checkin').value);
+        const checkout = new Date(document.getElementById('checkout').value)
+      }

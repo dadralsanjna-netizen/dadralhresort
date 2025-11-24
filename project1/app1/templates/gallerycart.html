@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart</title>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --dark-gold: #b38a58;
+      --brown: #5a4a3a;
+      --light-brown: #8b6b3d;
+      --off-white: #f9f6f0;
+    }
+    body {
+      font-family: "Georgia", serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--off-white);
+      color: #333;
+    }
+    .cart-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h1 { text-align: center; margin-bottom: 25px; color: var(--brown); }
+    .cart-item { display: flex; gap: 20px; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .cart-item img { width: 160px; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid var(--light-brown); }
+    .item-details { flex: 1; }
+    .item-details h3 { margin: 0 0 10px; color: var(--brown); }
+    .item-details p { margin: 4px 0; font-size: 14px; color: #555; }
+    .booking-form label { display: block; margin: 10px 0 5px; font-weight: bold; font-size: 14px; color: var(--brown); }
+    .booking-form input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; margin-bottom: 10px; }
+    .summary { background: var(--off-white); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #e0d7c7; }
+    .summary p { font-size: 16px; margin: 8px 0; }
+    .summary strong { color: var(--brown); }
+    .btn-book { margin-top: 20px; width: 100%; padding: 14px; background: linear-gradient(to right, var(--dark-gold), var(--gold)); border: none; border-radius: 8px; font-size: 16px; font-weight: bold; color: white; cursor: pointer; transition: 0.3s ease; }
+    .btn-book:hover { background: linear-gradient(to right, var(--brown), var(--dark-gold)); }
+  </style>
+</head>
+<body>
+
+<div class="cart-container">
+  <h1>Your Cart</h1>
+
+  <div class="cart-item">
+    <img src="{{ a.image.url }}" alt="{{ a.name }}">
+    <div class="item-details">
+      <h3>{{ a.name }}</h3>
+      <p>{{ a.description|truncatewords:15 }}</p>
+      <p><strong>Price per Night:</strong> ₹<span id="price-per-night">{{ a.price }}</span></p>
+    </div>
+  </div>
+
+  <form method="POST" action="" class="booking-form">
+    {% csrf_token %}
+
+    <label for="checkin">Check-in Date</label>
+    <input type="date" id="checkin" name="checkin" required>
+
+    <label for="checkout">Check-out Date</label>
+    <input type="date" id="checkout" name="checkout" required>
+
+    <label for="guests">Number of Guests</label>
+    <input type="number" id="guests" name="guest" min="1" max="10" value="1" required>
+
+    <label for="nights">Total Nights</label>
+    <input type="number" id="nights" name="nights" readonly placeholder="0">
+
+    <div class="summary">
+      <p><strong>Total Nights:</strong> <span id="display-nights">0</span></p>
+      <p><strong>Total Price:</strong> ₹<span id="total-price">{{ total_price }}</span></p>
+    </div>
+
+    <button type="submit" class="btn-book">Confirm Booking</button>
+  </form>
+</div>
+
+<script>
+  const checkinInput = document.getElementById('checkin');
+  const checkoutInput = document.getElementById('checkout');
+  const nightsInput = document.getElementById('nights');
+  const displayNights = document.getElementById('display-nights');
+  const totalPriceEl = document.getElementById('total-price');
+  const pricePerNight = parseFloat('{{ a.price|default:"0" }}');
+
+  function calculateNights() {
+    const checkin = new Date(checkinInput.value);
+    const checkout = new Date(checkoutInput.value);
+
+    if (checkin && checkout && checkout > checkin) {
+      const diffTime = checkout - checkin;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      nightsInput.value = diffDays;
+      displayNights.textContent = diffDays;
+      updateTotalPrice();
+    } else {
+      nightsInput.value = '';
+      displayNights.textContent = '0';
+      totalPriceEl.textContent = '0';
+    }
+  }
+
+  function updateTotalPrice() {
+    const nights = parseInt(nightsInput.value) || 0;
+    const total = nights * pricePerNight;
+    totalPriceEl.textContent = total.toLocaleString(); // formatted
+  }
+
+  checkinInput.addEventListener('change', calculateNights);
+  checkoutInput.addEventListener('change', calculateNights);
+</script>
+
+</body>
+</html>

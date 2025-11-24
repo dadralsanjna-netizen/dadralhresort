@@ -1,0 +1,549 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Room - Raj Vilas Palace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --dark-gold: #b38a58;
+      --light-gold: #f0e6d2;
+      --brown: #5a4a3a;
+      --light-brown: #8b6b3d;
+      --off-white: #f8f4e9;
+      --royal-red: #8b4513;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f6f0;
+      padding-top: 80px;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Selected Room Section */
+    .selected-room {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .room-hero {
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .room-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .room-details {
+      padding: 25px;
+    }
+
+    .room-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--royal-red);
+      margin: 0 0 12px;
+    }
+
+    .room-price-large {
+      color: var(--gold);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* Booking Form */
+    .booking-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e8e8e8;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    .guest-counter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guest-btn {
+      width: 48px;
+      background: var(--light-gold);
+      border: none;
+      color: var(--royal-red);
+      font-weight: 600;
+      font-size: 18px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .guest-btn:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .nights-display {
+      background: var(--light-gold);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .nights-count {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--royal-red);
+      display: block;
+      line-height: 1;
+    }
+
+    .nights-text {
+      color: var(--brown);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .price-summary {
+      background: var(--off-white);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .price-row:last-child {
+      border: none;
+      padding-top: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--royal-red);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--royal-red), var(--brown));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+    }
+
+    /* Available Rooms Section */
+    .available-rooms {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      color: var(--royal-red);
+      margin-bottom: 30px;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .room-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+
+    .room-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--royal-red);
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    .card-price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 15px 0;
+    }
+
+    .card-feature {
+      background: var(--light-gold);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--brown);
+    }
+
+    .card-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--royal-red), var(--brown));
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+    }
+
+    @media (max-width: 980px) {
+      .top-grid {
+        grid-template-columns: 1fr 320px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .room-hero {
+        height: 250px;
+      }
+
+      .room-title {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-container {
+        padding: 15px;
+      }
+
+      .room-hero {
+        height: 200px;
+      }
+
+      .room-title {
+        font-size: 1.3rem;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .guest-counter {
+        flex-wrap: wrap;
+      }
+
+      .price-row {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% include "header.html" %}
+
+  <div class="main-container">
+    <div class="top-grid">
+      <section class="selected-room">
+        <div class="room-hero">
+          {% if ddd.image %}
+          <img src="{{ ddd.image.url }}" alt="{{ ddd.name }}">
+          {% else %}
+          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80" alt="Room">
+          {% endif %}
+        </div>
+        <div class="room-details">
+          <h2 class="room-title">{{ ddd.name|default:'Royal Suite' }}</h2>
+          <div class="room-price-large">₹{{ ddd.price|default:'18500' }}/night</div>
+          <p style="margin-top:15px;color:var(--brown)">{{ ddd.name }} - Comfortable stay with modern amenities and royal hospitality.</p>
+        </div>
+      </section>
+
+      <aside class="booking-card">
+        <h3 style="margin:0 0 15px;font-family:'Playfair Display',serif;color:var(--royal-red);font-size:1.4rem">Book Your Stay</h3>
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="form-label">Check-in Date</label>
+            <input type="date" id="checkin" name="checkin" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Check-out Date</label>
+            <input type="date" id="checkout" name="checkout" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <div class="guest-counter">
+              <button type="button" id="guest-decrease" class="guest-btn">-</button>
+              <div id="guests-display" style="min-width:48px;text-align:center;font-weight:700;font-size:16px;padding:8px 16px;background:#fff;border-radius:6px;border:2px solid var(--light-gold)">2</div>
+              <button type="button" id="guest-increase" class="guest-btn">+</button>
+            </div>
+            <input type="hidden" id="guests" name="guest" value="2">
+            <div style="margin-top:8px;display:flex;justify-content:space-between">
+              <small style="color:var(--brown)">Use + / - to adjust guests</small>
+              <small style="color:var(--light-brown)">Maximum: 10 guests</small>
+            </div>
+          </div>
+
+          <div class="nights-display">
+            <span class="nights-count" id="nights-count">0</span>
+            <span class="nights-text">Nights</span>
+          </div>
+
+          <div class="price-summary">
+            <div class="price-row">
+              <span>Room Rate (₹{{ ddd.price|default:'18500' }} × <span id="display-nights">0</span> nights)</span>
+              <span>₹<span id="room-total">0</span></span>
+            </div>
+            <div class="price-row">
+              <span>Taxes & Fees (18%)</span>
+              <span>₹<span id="taxes">0</span></span>
+            </div>
+            <div class="price-row">
+              <span>Total Amount</span>
+              <span>₹<span id="total-amount">0</span></span>
+            </div>
+          </div>
+
+          <input type="hidden" id="nights" name="nights" value="0">
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-lock"></i> Complete Booking
+          </button>
+        </form>
+      </aside>
+    </div>
+
+    <section class="available-rooms">
+      <h2 class="section-title">Other Available Rooms</h2>
+      <div class="rooms-grid">
+        {% for room in dd %}
+        <div class="room-card">
+          {% if room.image %}
+          <img class="card-image" src="{{ room.image.url }}" alt="{{ room.name }}">
+          {% else %}
+          <img class="card-image" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=60" alt="{{ room.name }}">
+          {% endif %}
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">{{ room.name }}</h3>
+              <div class="card-price">₹{{ room.price }}</div>
+            </div>
+            <div class="card-features">
+              <span class="card-feature">Free WiFi</span>
+              <span class="card-feature">Air Conditioning</span>
+              <span class="card-feature">King Bed</span>
+            </div>
+            <p style="color:var(--brown);margin:0 0 15px">{{ room.name }} — Experience royal comfort.</p>
+            <a href="{% url 'cart' room.id %}" class="card-btn">Select This Room</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Guest counter functionality
+    const guestDecrease = document.getElementById('guest-decrease');
+    const guestIncrease = document.getElementById('guest-increase');
+    const guestInput = document.getElementById('guests');
+    const guestDisplay = document.getElementById('guests-display');
+    const MIN_GUESTS = 1;
+    const MAX_GUESTS = 10;
+
+    function updateGuests(change) {
+      const currentGuests = parseInt(guestInput.value);
+      const newValue = currentGuests + change;
+      
+      if (newValue >= MIN_GUESTS && newValue <= MAX_GUESTS) {
+        guestInput.value = newValue;
+        guestDisplay.textContent = newValue;
+      }
+    }
+
+    guestDecrease.addEventListener('click', () => updateGuests(-1));
+    guestIncrease.addEventListener('click', () => updateGuests(1));
+
+    // Date calculation and price updates
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+    const nightsCount = document.getElementById('nights-count');
+    const displayNights = document.getElementById('display-nights');
+    const nightsInput = document.getElementById('nights');
+    const roomTotal = document.getElementById('room-total');
+    const taxes = document.getElementById('taxes');
+    const totalAmount = document.getElementById('total-amount');
+    
+    const roomPrice = parseInt("{{ ddd.price|default:'18500' }}".replace(/,/g, ''));
+    const taxRate = 0.18; // 18% tax
+
+    function calculateBooking() {
+      const checkin = new Date(checkinInput.value);
+      const checkout = new Date(checkoutInput.value);
+      
+      if (checkin && checkout && checkout > checkin) {
+        const diffTime = checkout - checkin;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        // Update nights display
+        nightsCount.textContent = diffDays;
+        displayNights.textContent = diffDays;
+        nightsInput.value = diffDays;
+        
+        // Calculate costs
+        const subtotal = roomPrice * diffDays;
+        const taxAmount = subtotal * taxRate;
+        const finalTotal = subtotal + taxAmount;
+        
+        // Update price displays with proper formatting
+        roomTotal.textContent = subtotal.toLocaleString();
+        taxes.textContent = Math.round(taxAmount).toLocaleString();
+        totalAmount.textContent = Math.round(finalTotal).toLocaleString();
+      } else {
+        // Reset displays if dates are invalid
+        nightsCount.textContent = '0';
+        displayNights.textContent = '0';
+        nightsInput.value = '0';
+        roomTotal.textContent = '0';
+        taxes.textContent = '0';
+        totalAmount.textContent = '0';
+      }
+    }
+
+    // Set minimum dates
+    const today = new Date().toISOString().split('T')[0];
+    checkinInput.min = today;
+    checkoutInput.min = today;
+
+    // Add event listeners
+    checkinInput.addEventListener('change', function() {
+      if (this.value) {
+        const nextDay = new Date(this.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkoutInput.min = nextDay.toISOString().split('T')[0];
+        
+        if (checkoutInput.value && new Date(checkoutInput.value) <= new Date(this.value)) {
+          checkoutInput.value = '';
+        }
+      }
+      calculateBooking();
+    });
+
+    checkoutInput.addEventListener('change', calculateBooking);
+
+    // Initialize calculation
+    calculateBooking();
+  </script>
+</body>
+</html>

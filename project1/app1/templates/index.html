@@ -1,0 +1,1410 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dadralh Resort</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --gold: #d4af37; /* light gold */
+        --gold-100: #e9d6a0;
+        --accent: #8b4513;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        line-height: 1.6;
+        background: #fff;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 80vh; /* reduce hero height so it isn't too big */
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("{% static 'images/hero_3.webp' %}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        text-align: left;
+        color: #fff;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          height: 60vh;
+          min-height: 400px;
+          background-attachment: scroll;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          height: 50vh;
+          min-height: 350px;
+        }
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #d6d2ca;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content p {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+        color: #f1eadc; /* Light gold for backgrounds */
+        /* opacity: 0.6; */
+      }
+
+      .explore-btn {
+        display: inline-block;
+        padding: 13px 18px;
+        /* background: #946a41; */
+        color: #fff;
+        border: 2px solid #faf9f7;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(101, 67, 33, 0.4);
+      }
+
+      .explore-btn:hover {
+        background: #f7f6f5;
+        border-color: #f4f0ed;
+        color: #be9a3d;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(101, 67, 33, 0.5);
+      }
+
+      /* About Section */
+      .about-section {
+        padding: 120px 0;
+        background: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        align-items: center;
+      }
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 95%;
+        height: 480px; /* slightly shorter to reduce large div */
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image::after {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        right: -30px;
+        bottom: -30px;
+        border: 3px solid #654321;
+        border-radius: 20px;
+        z-index: -1;
+      }
+
+      .about-content {
+        padding-right: 50px;
+      }
+
+      .about-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        color: #333;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .about-content h2::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 80px;
+        height: 3px;
+        background: #654321;
+      }
+
+      .about-content p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        color: #666;
+      }
+
+      /* Gallery Section */
+      .gallery-section {
+        padding: 100px 0;
+        background: #fff;
+      }
+
+      .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .section-header p {
+        color: #666;
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Gallery uses a 12-column grid so items can span different widths/heights */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: 120px; /* slightly tighter rows */
+        gap: 18px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        background: #ddd;
+      }
+
+      /* size helpers: horizontal (width-wise), vertical (length-wise), small */
+      .gallery-item.horizontal {
+        grid-column: span 6;
+        grid-row: span 2;
+      }
+      .gallery-item.vertical {
+        grid-column: span 3;
+        grid-row: span 4;
+      }
+      .gallery-item.small {
+        grid-column: span 3;
+        grid-row: span 2;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        /* position: absolute; */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to top,
+          rgba(252, 251, 251, 0.6),
+          transparent
+        );
+        padding: 24px;
+        color: #fff;
+        transform: translateY(100px);
+        transition: transform 0.28s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+
+      .gallery-overlay h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .gallery-overlay p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #efefef 0%, #faf9f7 100%);
+        position: relative;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .feature-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+        padding: 30px 20px;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 8px 25px rgba(101, 67, 33, 0.1);
+        border: 1px solid rgba(101, 67, 33, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          #654321 0%,
+          #8b4513 50%,
+          #654321 100%
+        );
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(101, 67, 33, 0.2);
+        border-color: rgba(101, 67, 33, 0.25);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: #654321;
+        margin-bottom: 20px;
+        display: inline-block;
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.15) rotate(5deg);
+        color: #8b4513;
+      }
+
+      .feature-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: #654321;
+        margin-bottom: 18px;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .feature-card:hover h3 {
+        color: #8b4513;
+      }
+
+      .feature-card p {
+        color: #555;
+        line-height: 1.5;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+
+      /* Dining & Chefs Section (compact, reused from dinning.html) */
+      .chefs-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #fdf8f0 0%, #f5f0e6 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container-chef {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .chefs-title {
+        text-align: center;
+        font-size: 2.6rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 40px;
+        font-family: "Playfair Display", serif;
+      }
+
+      .chefs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+        align-items: start;
+      }
+
+      .chef-card {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 36px rgba(139, 26, 26, 0.06);
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        border: 1px solid rgba(212, 175, 55, 0.12);
+      }
+
+      .chef-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 24px 60px rgba(139, 26, 26, 0.12);
+      }
+
+      .chef-image-container {
+        height: 340px;
+        overflow: hidden;
+      }
+      .chef-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+      .chef-card:hover .chef-image {
+        transform: scale(1.05);
+      }
+
+      .chef-info {
+        padding: 22px 20px 26px;
+        text-align: center;
+      }
+      .chef-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .chef-specialty {
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+      .chef-bio {
+        color: #555;
+        line-height: 1.6;
+        font-size: 0.97rem;
+        margin-bottom: 14px;
+      }
+
+      .chef-experience {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+      }
+      .exp-number {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .exp-label {
+        font-size: 0.8rem;
+        color: #777;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+
+      @media (max-width: 768px) {
+        .chefs-section {
+          padding: 60px 0;
+        }
+        .chefs-title {
+          font-size: 2rem;
+          margin-bottom: 28px;
+        }
+        .chef-image-container {
+          height: 260px;
+        }
+      }
+      /* Responsive design for features */
+      @media (max-width: 1024px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Call to Action */
+      .cta-section {
+        padding: 100px 0; /* reduce vertical padding */
+        background: linear-gradient(
+            rgba(117, 113, 113, 0.65),
+            rgba(139, 129, 129, 0.65)
+          ),
+          url("{% static 'images/intro_1035x600.webp' %}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        text-align: center;
+        color: #d4af37;
+      }
+
+      .cta-content {
+        max-width: 700px;
+        margin: 0 auto;
+        color: #d4af37;
+      }
+
+      .cta-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 14px 34px;
+        /* background: #654321; */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1.05rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+        box-shadow: 0 8px 20px rgba(182, 157, 132, 0.4);
+        border: 2px solid #edebe9;
+        font-weight: 600;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(80, 42, 3, 0.4);
+        /* background: #8b4513; */
+        border-color: #fbf9f8;
+        color: #b18b0f;
+        font-weight: 700;
+      }
+
+      /* Testimonials Section - Elegant Slider Design */
+      .testimonials-section {
+        padding: 60px 0;
+        background: #f9f7f4;
+        position: relative;
+      }
+
+      .testimonials-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 165, 116, 0.3),
+          transparent
+        );
+      }
+
+      .testimonials-slider-container {
+        max-width: 1200px;
+        margin: 24px auto 0;
+        padding: 0 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials-slider {
+        display: flex;
+        gap: 25px;
+        overflow: visible;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 20px 0 30px;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .testimonials-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .testimonial-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fefcf8 100%);
+        padding: 28px 26px;
+        border-radius: 18px;
+        box-shadow: 0 6px 24px rgba(139, 115, 85, 0.08),
+          0 2px 6px rgba(139, 115, 85, 0.04);
+        border: 1px solid rgba(212, 165, 116, 0.15);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        flex: 0 0 calc(33.333% - 17px);
+        min-width: 300px;
+        max-width: 380px;
+        scroll-snap-align: start;
+        width: calc(33.333% - 17px);
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 18px;
+        left: 24px;
+        font-family: "Playfair Display", serif;
+        font-size: 5.5rem;
+        color: rgba(212, 165, 116, 0.12);
+        opacity: 1;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .testimonial-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          #654321 0%,
+          #8b4513 50%,
+          #654321 100%
+        );
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+      .testimonial-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 16px 48px rgba(139, 115, 85, 0.12),
+          0 6px 20px rgba(212, 165, 116, 0.08);
+        border-color: rgba(212, 165, 116, 0.3);
+      }
+
+      .testimonial-card p {
+        color: #444;
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 20px;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+        font-weight: 400;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(212, 165, 116, 0.2);
+        position: relative;
+        z-index: 1;
+      }
+
+      .testimonial-author img {
+        width: 52px;
+        height: 52px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(212, 165, 116, 0.25);
+        box-shadow: 0 3px 12px rgba(212, 165, 116, 0.2), inset 0 0 0 2px #ffffff;
+        transition: all 0.4s ease;
+        background: #ffffff;
+      }
+
+      .testimonial-card:hover .testimonial-author img {
+        transform: scale(1.08);
+        border-color: rgba(212, 165, 116, 0.5);
+        box-shadow: 0 5px 18px rgba(212, 165, 116, 0.3), inset 0 0 0 2px #ffffff;
+      }
+
+      .testimonial-author-info {
+        flex: 1;
+      }
+
+      .testimonial-author-name {
+        font-weight: 600;
+        color: #654321;
+        margin-bottom: 4px;
+        font-size: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .testimonial-author-location {
+        font-size: 0.9rem;
+        color: #777;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .testimonial-author-location::before {
+        content: "📍";
+        font-size: 0.8rem;
+      }
+
+      .slider-nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .slider-btn {
+        background: linear-gradient(135deg, #8b6f47 0%, #654321 100%);
+        color: #fff;
+        border: 2px solid rgba(101, 67, 33, 0.3);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.35s ease;
+        box-shadow: 0 4px 14px rgba(101, 67, 33, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        font-weight: 600;
+      }
+
+      .slider-btn:hover {
+        background: linear-gradient(135deg, #654321 0%, #8b4513 100%);
+        color: #fff;
+        border-color: rgba(101, 67, 33, 0.5);
+        transform: scale(1.08) translateY(-2px);
+        box-shadow: 0 6px 20px rgba(101, 67, 33, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      .slider-btn:active {
+        transform: scale(0.96);
+      }
+
+      .slider-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: none;
+        background: #c9b99d;
+        border-color: rgba(101, 67, 33, 0.2);
+      }
+
+      /* Testimonials Section Header Override - Dark Brown Colors */
+      .testimonials-section .section-header h2::before {
+        background: linear-gradient(90deg, #8b6f47, #654321);
+      }
+
+      .testimonials-section .section-header h2::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #8b6f47,
+          #654321,
+          transparent
+        );
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .about-container,
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(6, 1fr);
+          grid-auto-rows: 120px;
+        }
+
+        /* adjust spans for medium screens */
+        .gallery-item.large {
+          grid-column: span 6;
+          grid-row: span 2;
+        }
+        .gallery-item.medium {
+          grid-column: span 3;
+          grid-row: span 2;
+        }
+        .gallery-item.small {
+          grid-column: span 3;
+          grid-row: span 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+
+        .explore-btn {
+          padding: 12px 30px;
+          font-size: 1rem;
+        }
+
+        .about-container {
+          grid-template-columns: 1fr;
+        }
+
+        .about-content {
+          padding-right: 0;
+        }
+
+        .about-content h2 {
+          font-size: 2.2rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+        }
+
+        /* collapse all spans on small screens */
+        .gallery-item.large,
+        .gallery-item.medium,
+        .gallery-item.small {
+          grid-column: auto !important;
+          grid-row: auto !important;
+        }
+
+        .testimonials-slider-container {
+          padding: 0 20px;
+        }
+
+        .testimonial-card {
+          flex: 0 0 calc(100% - 20px);
+          min-width: 280px;
+          max-width: 100%;
+          width: calc(100% - 20px);
+          padding: 24px;
+        }
+
+        .section-header h2 {
+          font-size: 2.2rem;
+        }
+
+        .cta-content h2 {
+          font-size: 2.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .explore-btn {
+          padding: 10px 25px;
+          font-size: 0.95rem;
+        }
+
+        .section-header h2 {
+          font-size: 1.8rem;
+        }
+
+        .about-content h2 {
+          font-size: 1.8rem;
+        }
+
+        .cta-content h2 {
+          font-size: 1.8rem;
+        }
+
+        .cta-btn {
+          padding: 12px 28px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "header.html" %}
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to<br />Dadralh Resort</h1>
+        <p>Experience the grandeur of royal hospitality</p>
+        <a href="#about" class="explore-btn">Explore Our Legacy</a>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-image">
+          <img
+            src="{% static 'images/hero_2.webp' %}"
+            alt="Dadralh
+          Resort Interior"
+          />
+        </div>
+        <div class="about-content">
+          <h2>Our Royal Legacy</h2>
+          <p>
+            Originally built in 1923 as the private residence of the noble
+            Thakur family, Dadralh Resort stands as a magnificent example of
+            Indo-Saracenic architecture. This heritage property has been
+            meticulously restored to preserve its original grandeur while
+            offering modern comforts.
+          </p>
+          <p>
+            The resort features stunning courtyards with traditional jharokhas
+            (overhanging balconies), intricate frescoes depicting Rajasthani
+            folklore, and hand-carved marble pillars. Each of our 45 rooms and
+            suites is uniquely decorated with antique furnishings that reflect
+            the royal heritage of Rajasthan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="features-section">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-utensils"></i>
+          </div>
+          <h3>Royal Dining</h3>
+          <p>
+            Savor authentic Rajasthani cuisine prepared from centuries-old royal
+            recipes in our award-winning restaurant.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-spa"></i>
+          </div>
+          <h3>Luxury Spa</h3>
+          <p>
+            Indulge in traditional Ayurvedic treatments and royal wellness
+            therapies for ultimate relaxation.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-concierge-bell"></i>
+          </div>
+          <h3>Butler Service</h3>
+          <p>
+            Experience personalized butler service that continues our legacy of
+            royal hospitality.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="features-section">
+      <div class="gallery-container">
+        <div class="section-header">
+          <h2>Royal Amenities & Services</h2>
+          <p>Experience unparalleled luxury with our exclusive offerings</p>
+        </div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-utensils"></i>
+          </div>
+          <h3>Royal Dining</h3>
+          <p>
+            Savor authentic Rajasthani cuisine prepared from centuries-old royal
+            recipes in our award-winning restaurant.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-spa"></i>
+          </div>
+          <h3>Luxury Spa</h3>
+          <p>
+            Indulge in traditional Ayurvedic treatments and royal wellness
+            therapies for ultimate relaxation.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-concierge-bell"></i>
+          </div>
+          <h3>Butler Service</h3>
+          <p>
+            Experience personalized butler service that continues our legacy of
+            royal hospitality.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-swimming-pool"></i>
+          </div>
+          <h3>Royal Pool</h3>
+          <p>
+            Relax in our magnificent infinity pool with stunning views of the
+            palace gardens and architectural marvels.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-tree"></i>
+          </div>
+          <h3>Heritage Gardens</h3>
+          <p>
+            Stroll through meticulously maintained Mughal-style gardens with
+            rare flora, fountains, and tranquil sitting areas.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa fa-glass-cheers"></i>
+          </div>
+          <h3>Royal Bar</h3>
+          <p>
+            Enjoy signature cocktails and premium spirits in our elegant bar
+            adorned with vintage decor and live classical music.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Dining & Master Chefs removed from homepage (moved to dedicated dining page) -->
+
+    <!-- <section class="gallery-section">
+      <div class="gallery-container">
+        <div class="section-header">
+          <h2>Experience Royal Luxury</h2>
+          <p>Discover the enchanting spaces and experiences that await you</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item horizontal">
+            <img
+              src="{% static 'images/heritage-hotel-dining-experience-img-2.jpg' %}"
+              alt="Royal Dining"
+            />
+            <div class="gallery-overlay">
+              <h3>Royal Dining Experience</h3>
+              <p>
+                Immerse yourself in the grandeur of our royal dining hall while
+                savoring authentic cuisine
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item vertical">
+            <img
+              src="{% static 'images/2025-royal-suite-living-room-1151x500-1.jpg' %}"
+              alt="Royal Suite"
+            />
+            <div class="gallery-overlay">
+              <h3>Luxury Suites</h3>
+              <p>Experience unparalleled comfort in our heritage suites</p>
+            </div>
+          </div>
+          <div class="gallery-item small">
+            <img src="{% static 'images/pool1.avif' %}" alt="Swimming Pool" />
+            <div class="gallery-overlay">
+              <h3>Pool & Gardens</h3>
+              <p>
+                Relax in our serene poolside setting surrounded by lush gardens
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <section class="gallery-section">
+      <div class="gallery-container">
+        <div class="section-header">
+          <h2>Experience Royal Luxury</h2>
+          <p>Discover the enchanting spaces and experiences that await you</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item horizontal">
+            <img
+              src="{% static 'images/hero3_1920x950.jpg' %}"
+              alt="Royal Dining"
+            />
+            <div class="gallery-overlay">
+              <h3>Royal Dining Experience</h3>
+              <p>
+                Immerse yourself in the grandeur of our royal dining hall while
+                savoring authentic cuisine
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item small">
+            <img
+              src="{% static 'images/2025-royal-suite-living-room-1151x500-1.jpg' %}"
+              alt="Royal Suite"
+            />
+            <div class="gallery-overlay">
+              <h3>Luxury Suites</h3>
+              <p>Experience unparalleled comfort in our heritage suites</p>
+            </div>
+          </div>
+          <div class="gallery-item vertical">
+            <img
+              src="{% static 'images/Arq-at-Pichola.webp' %}"
+              alt="Swimming Pool"
+            />
+            <div class="gallery-overlay">
+              <h3>Pool & Gardens</h3>
+              <p>
+                Relax in our serene poolside setting surrounded by lush gardens
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item small">
+            <img
+              src="{% static 'images/download.jpeg' %}"
+              alt="Spa & Wellness"
+            />
+            <div class="gallery-overlay">
+              <h3>Royal Garden</h3>
+              <p>
+                Beautiful landscaped gardens with fountains and peaceful walking
+                paths
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item horizontal">
+            <img
+              src="{% static 'images/Celebrations.webp' %}"
+              alt="Event Hall"
+            />
+            <div class="gallery-overlay">
+              <h3>Grand Events</h3>
+              <p>
+                Host magnificent celebrations in our opulent banquet and event
+                halls
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="gallery-container">
+        <div class="section-header">
+          <h2>What Our Guests Say</h2>
+          <p>
+            Stories from visitors who experienced the Dadrah Resort hospitality
+          </p>
+        </div>
+        <div class="testimonials-slider-container">
+          <div class="testimonials-slider" id="testimonialsSlider">
+            <div class="testimonial-card">
+              <p>
+                "A magical stay — the architecture, the food and the service
+                were exceptional. The suite felt like stepping back into a royal
+                era with modern comfort."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://ui-avatars.com/api/?name=Priya+Sharma&background=654321&color=fff&size=150&bold=true"
+                  alt="Priya Sharma"
+                />
+                <div class="testimonial-author-info">
+                  <div class="testimonial-author-name">Priya Sharma</div>
+                  <div class="testimonial-author-location">Mumbai, India</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p>
+                "Impeccable service — the butler service made our anniversary
+                feel truly special. Food was authentic and delicious."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://ui-avatars.com/api/?name=Mohit+Verma&background=654321&color=fff&size=150&bold=true"
+                  alt="Mohit Verma"
+                />
+                <div class="testimonial-author-info">
+                  <div class="testimonial-author-name">Mohit Verma</div>
+                  <div class="testimonial-author-location">Jaipur, India</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p>
+                "The royal dining experience exceeded all expectations.
+                Authentic Rajasthani flavors and impeccable presentation made
+                every meal unforgettable."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://ui-avatars.com/api/?name=Ananya+Patel&background=654321&color=fff&size=150&bold=true"
+                  alt="Ananya Patel"
+                />
+                <div class="testimonial-author-info">
+                  <div class="testimonial-author-name">Ananya Patel</div>
+                  <div class="testimonial-author-location">
+                    Ahmedabad, India
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p>
+                "Perfect blend of heritage and luxury. The spa treatments and
+                traditional wellness therapies were rejuvenating. Highly
+                recommend!"
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="https://ui-avatars.com/api/?name=Rahul+Singh&background=654321&color=fff&size=150&bold=true"
+                  alt="Rahul Singh"
+                />
+                <div class="testimonial-author-info">
+                  <div class="testimonial-author-name">Rahul Singh</div>
+                  <div class="testimonial-author-location">Delhi, India</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-nav-buttons">
+            <button
+              class="slider-btn"
+              id="prevBtn"
+              aria-label="Previous testimonial"
+            >
+              <i class="fa fa-chevron-left"></i>
+            </button>
+            <button
+              class="slider-btn"
+              id="nextBtn"
+              aria-label="Next testimonial"
+            >
+              <i class="fa fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Begin Your Royal Journey</h2>
+        <a href="{% url 'room' %}" class="cta-btn">Book Your Stay</a>
+      </div>
+    </section>
+
+    {% include "foot.html" %}
+
+    <script>
+      // Testimonials Slider Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.getElementById("testimonialsSlider");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        if (!slider || !prevBtn || !nextBtn) return;
+
+        const cards = slider.querySelectorAll(".testimonial-card");
+        let currentIndex = 0;
+        let cardsPerView = getCardsPerView();
+        let autoScrollInterval;
+
+        function getCardsPerView() {
+          if (window.innerWidth >= 1024) return 3;
+          if (window.innerWidth >= 768) return 2;
+          return 1;
+        }
+
+        function updateSlider() {
+          if (cards.length === 0 || cards.length === 1) return;
+
+          // Recalculate cards per view
+          cardsPerView = getCardsPerView();
+
+          // Get the actual card width (including gap)
+          const firstCard = cards[0];
+          const cardWidth = firstCard.offsetWidth;
+          const gap = 25;
+          const totalCardWidth = cardWidth + gap;
+
+          // Calculate translate value
+          const translateX = -currentIndex * totalCardWidth;
+          slider.style.transform = `translateX(${translateX}px)`;
+
+          // Update button states
+          const maxIndex = Math.max(0, cards.length - cardsPerView);
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex >= maxIndex;
+
+          // Update button styles
+          prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
+          nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
+          prevBtn.style.cursor = currentIndex === 0 ? "not-allowed" : "pointer";
+          nextBtn.style.cursor =
+            currentIndex >= maxIndex ? "not-allowed" : "pointer";
+        }
+
+        function scrollSlider(direction) {
+          cardsPerView = getCardsPerView();
+          const maxIndex = Math.max(0, cards.length - cardsPerView);
+
+          if (direction === "next" && currentIndex < maxIndex) {
+            currentIndex++;
+          } else if (direction === "prev" && currentIndex > 0) {
+            currentIndex--;
+          }
+
+          updateSlider();
+        }
+
+        prevBtn.addEventListener("click", () => scrollSlider("prev"));
+        nextBtn.addEventListener("click", () => scrollSlider("next"));
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            const newCardsPerView = getCardsPerView();
+            if (newCardsPerView !== cardsPerView) {
+              cardsPerView = newCardsPerView;
+              const maxIndex = Math.max(0, cards.length - cardsPerView);
+              currentIndex = Math.min(currentIndex, maxIndex);
+              updateSlider();
+            }
+          }, 250);
+        });
+
+        // Auto-scroll functionality
+        function startAutoScroll() {
+          stopAutoScroll();
+          autoScrollInterval = setInterval(() => {
+            cardsPerView = getCardsPerView();
+            const maxIndex = Math.max(0, cards.length - cardsPerView);
+            if (currentIndex >= maxIndex) {
+              currentIndex = 0;
+            } else {
+              currentIndex++;
+            }
+            updateSlider();
+          }, 5000);
+        }
+
+        function stopAutoScroll() {
+          if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+          }
+        }
+
+        // Pause auto-scroll on hover
+        const sliderContainer = document.querySelector(
+          ".testimonials-slider-container"
+        );
+        if (sliderContainer) {
+          sliderContainer.addEventListener("mouseenter", stopAutoScroll);
+          sliderContainer.addEventListener("mouseleave", startAutoScroll);
+        }
+
+        // Initialize after a small delay to ensure DOM is ready
+        setTimeout(() => {
+          updateSlider();
+          startAutoScroll();
+        }, 100);
+      });
+    </script>
+  </body>
+</html>

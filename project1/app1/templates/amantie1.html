@@ -1,0 +1,417 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raj Vilas Palace | Luxury Amenities</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+    .dining-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 50px; */
+    /* height: 400px; */
+    background: linear-gradient(to right, #fff4f0, #ffffff);
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+     {% include "header.html" %}
+    <section class="dining-section">
+      <div class="image-content">
+        <img src="{% static 'images/home-page-banner-1366x523.jpg' %}" alt="dinning" />
+      </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="amenities-section">
+      <div class="section-header">
+        <h2>Palace Facilities</h2>
+        <p>
+          Experience the perfect blend of traditional grandeur and modern luxury
+          through our exceptional amenities
+        </p>
+      </div>
+
+      <div class="amenities-grid">
+        <!-- Royal Spa -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img
+              src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Royal Spa"
+            />
+          </div>
+          <div class="amenity-content">
+            <h3>Royal Spa Retreat</h3>
+            <div class="amenity-meta">
+              <span>Daily 8AM-9PM</span>
+              <span>By Appointment</span>
+            </div>
+            <p>
+              Our sanctuary of wellness offers ancient Ayurvedic therapies in an
+              environment of pure tranquility. Experience our signature
+              gold-leaf facial and marble massage tables.
+            </p>
+          </div>
+        </div>
+
+        <!-- Yoga Pavilion -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img
+              src="https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Yoga Pavilion"
+            />
+          </div>
+          <div class="amenity-content">
+            <h3>Sunrise Yoga Pavilion</h3>
+            <div class="amenity-meta">
+              <span>Daily 6AM-7PM</span>
+              <span>All Levels Welcome</span>
+            </div>
+            <p>
+              Practice amidst our marble columns with views of the palace
+              gardens. Choose from Hatha, Vinyasa, or restorative sessions led
+              by our master yogis.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fitness Center -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img src="{% static 'images/gym1.jpg' %}" alt="Fitness Center" />
+          </div>
+          <div class="amenity-content">
+            <h3>Palace Fitness Center</h3>
+            <div class="amenity-meta">
+              <span>24/7 Access</span>
+              <span>Personal Trainers</span>
+            </div>
+            <p>
+              Our marble-clad gym features state-of-the-art equipment, private
+              training suites, and a dedicated Pilates studio with royal fitness
+              programs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Badminton -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img src="{% static 'images/bad.jpg' %}" alt="Badminton Court" />
+          </div>
+          <div class="amenity-content">
+            <h3>Royal Badminton Court</h3>
+            <div class="amenity-meta">
+              <span>7AM-9PM</span>
+              <span>Equipment Provided</span>
+            </div>
+            <p>
+              Our climate-controlled indoor court features professional-grade
+              flooring. Join our tournaments or request coaching from our
+              resident champion.
+            </p>
+          </div>
+        </div>
+
+        <!-- Golf -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img
+              src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Golf Course"
+            />
+          </div>
+          <div class="amenity-content">
+            <h3>Palace Golf Course</h3>
+            <div class="amenity-meta">
+              <span>Sunrise-Sunset</span>
+              <span>Par-3 Course</span>
+            </div>
+            <p>
+              Our 9-hole executive course winds through palace gardens with
+              stunning views. Professional instruction available daily.
+            </p>
+          </div>
+        </div>
+
+        <!-- Infinity Pool -->
+        <div class="amenity-card">
+          <div class="amenity-image">
+            <img
+              src="{% static 'images/TORV-Luxury-vilas-pool-724x407.webp' %}"
+              alt="Infinity Pool"
+            />
+          </div>
+          <div class="amenity-content">
+            <h3>Infinity Pool Oasis</h3>
+            <div class="amenity-meta">
+              <span>7AM-8PM</span>
+              <span>Poolside Service</span>
+            </div>
+            <p>
+              Our stunning pool appears to merge with the desert horizon. Enjoy
+              private cabanas and our signature cocktails with palace views.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="btn">
+      <a href="daily"
+        ><button class="palace-btn">Check Availability</button></a
+      </div>
+    </section>
+    <!-- Nearby Attractions Section -->
+    <div class="attractions-container">
+      <h2 class="section-title">Nearby Attractions</h2>
+
+      <div class="attractions-slider">
+        <div class="slider-container" id="slider">
+          <!-- Amber Fort -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img src="{% static 'images/amber-fort-jaipur.jpg' %}" alt="Amber Fort" />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">Amber Fort</h3>
+              <p class="attraction-description">
+                The majestic Amber Fort is a UNESCO World Heritage Site
+                featuring stunning architecture, mirror work, and panoramic
+                views of Jaipur. Built in 1592 by Raja Man Singh, this
+                magnificent fort is constructed with pale yellow and pink
+                sandstone, and white marble. The fort is known for its artistic
+                style, blending both Hindu and Mughal elements. Don't miss the
+                Sheesh Mahal (Mirror Palace) with its intricate mirror work.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>11 km from palace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- City Palace -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img
+                src="{% static 'images/City_Palace_jaipur_pinkcityroyals02.jpg' %}"
+                alt="City Palace"
+              />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">City Palace</h3>
+              <p class="attraction-description">
+                The royal residence showcasing a blend of Rajasthani and Mughal
+                architecture with beautiful courtyards and museums housing royal
+                artifacts. The palace complex includes the Chandra Mahal and
+                Mubarak Mahal palaces and other buildings. The palace was built
+                between 1729 and 1732 by Sawai Jai Singh II, the ruler of Amber.
+                The palace complex is divided into a series of courtyards,
+                sprawling gardens and buildings.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>5 km from palace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hawa Mahal -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img src="{% static 'images/hawa mehal.jpg' %}" alt="Hawa Mahal" />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">Hawa Mahal</h3>
+              <p class="attraction-description">
+                The iconic "Palace of Winds" with its unique honeycomb structure
+                featuring 953 small windows (jharokhas) built in 1799 by
+                Maharaja Sawai Pratap Singh. The five-story palace was designed
+                to allow royal ladies to observe everyday life and festivals
+                celebrated in the street below without being seen. The palace is
+                constructed of red and pink sandstone, and stands at the edge of
+                the City Palace. The structure is a fine example of Rajput
+                architecture.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>6 km from palace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jantar Mantar -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img src="{% static 'images/jantar.jpg' %}" alt="Jantar Mantar" />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">Jantar Mantar</h3>
+              <p class="attraction-description">
+                Collection of 19 astronomical instruments built by Maharaja Jai
+                Singh II including the world's largest stone sundial accurate to
+                within 2 seconds. The instruments allow the observation of
+                astronomical positions with the naked eye. The observatory is
+                one of five built by Jai Singh II in different cities. The
+                Samrat Yantra (Supreme Instrument) is the world's largest
+                sundial, standing 27 meters tall. The site was added to the
+                UNESCO World Heritage List in 2010.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>5.5 km from palace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jal Mahal -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img src="{% static 'images/jalmahal.jpg' %}" alt="Jal Mahal" />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">Jal Mahal</h3>
+              <p class="attraction-description">
+                The stunning "Water Palace" appearing to float in the center of
+                Man Sagar Lake. Built in 18th century in Rajput style, with four
+                floors submerged when the lake is full. The palace was
+                originally constructed in 1699 and later renovated and enlarged
+                in the 18th century by Maharaja Jai Singh II. The palace is a
+                five-storied building, of which four floors remain underwater
+                when the lake is full. The architecture is a blend of Mughal and
+                Rajput styles.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>8 km from palace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nahargarh Fort -->
+          <div class="attraction-card">
+            <div class="attraction-img">
+              <img src="{% static 'images/nahargarh-fort.jpg' %}" alt="Nahargarh Fort" />
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-title">Nahargarh Fort</h3>
+              <p class="attraction-description">
+                The "Tiger Fort" offers breathtaking views of Jaipur city. Part
+                of the defensive ring along with Amber Fort and Jaigarh Fort.
+                Features beautiful frescoes and summer palace. Built mainly in
+                1734 by Maharaja Sawai Jai Singh II, the fort was expanded in
+                1868. The fort was originally named Sudarshangarh but became
+                known as Nahargarh after Nahar Singh Bhomia, whose spirit was
+                said to haunt the place. The fort houses Madhavendra Bhawan, a
+                summer palace with identical suites for the king and his queens.
+              </p>
+              <span class="read-more">Read More</span>
+              <div class="distance">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>13 km from palace</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="slider-btn" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Slider functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.getElementById("slider");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const cards = document.querySelectorAll(".attraction-card");
+        let currentIndex = 0;
+        const cardWidth = cards[0].offsetWidth + 25; // card width + gap
+
+        // Show 3 cards at a time
+        const cardsToShow = 3;
+        const scrollAmount = cardWidth * cardsToShow;
+
+        function updateSlider() {
+          const scrollPosition = currentIndex * cardWidth;
+          slider.scrollTo({
+            left: scrollPosition,
+            behavior: "smooth",
+          });
+
+          // Disable prev button when at start
+          prevBtn.disabled = currentIndex === 0;
+
+          // Disable next button when at end
+          nextBtn.disabled = currentIndex >= cards.length - cardsToShow;
+        }
+
+        prevBtn.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex = Math.max(0, currentIndex - cardsToShow);
+            updateSlider();
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentIndex < cards.length - cardsToShow) {
+            currentIndex = Math.min(
+              cards.length - cardsToShow,
+              currentIndex + cardsToShow
+            );
+            updateSlider();
+          }
+        });
+
+        // Read more functionality for attraction descriptions
+        const readMoreButtons = document.querySelectorAll(".read-more");
+        readMoreButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const description = this.previousElementSibling;
+            description.classList.toggle("expanded");
+            this.textContent = description.classList.contains("expanded")
+              ? "Read Less"
+              : "Read More";
+          });
+        });
+
+        // Initialize button states
+        updateSlider();
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          const newCardWidth = cards[0].offsetWidth + 25;
+          if (newCardWidth !== cardWidth) {
+            updateSlider();
+          }
+        });
+      });
+    </script>
+    <div id="footer-placeholder"></div>
+     {% include "foot.html" %}
+  </body>
+</html>

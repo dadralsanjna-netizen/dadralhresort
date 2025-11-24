@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Room | Heritage Palace</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f7f4;
+      color: #5a4635;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 120px auto 50px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: #5a4635;
+      margin-bottom: 30px;
+    }
+
+    .room-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .room-info h2 {
+      font-family: 'Playfair Display', serif;
+      color: #8b4513;
+    }
+
+    .room-info p {
+      margin: 5px 0 15px;
+    }
+
+    .booking-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    .booking-form input,
+    .booking-form select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .booking-form button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(to right, #b08d57, #d6ba8d);
+      color: #fff8e1;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .booking-form button:hover {
+      background: linear-gradient(to right, #a67c52, #c9af85);
+    }
+
+    .total-nights{
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #8b4513;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Book Your Room</h1>
+
+    <img src="{{ ddd.image.url }}" alt="{{ room.name }}" class="room-img">
+
+    <div class="room-info">
+      <h2>{{ ddd.name }}</h2>
+      <p>Price per Night: <strong>₹{{ ddd.price }}</strong></p>
+    </div>
+
+    <form method="POST" action="" class="booking-form">
+      {% csrf_token %}
+      
+      <label for="checkin">Check-in Date</label>
+      <input type="date" id="checkin" name="checkin" required>
+
+      <label for="checkout">Check-out Date</label>
+      <input type="date" id="checkout" name="checkout" required>
+
+      <label for="guests">Number of Guests</label>
+      <input type="number" id="guests" name="guest" min="1" max="10" value="1" required>
+
+      <label for="nights">Total Nights</label>
+      <input type="number" id="nights" name="nights" readonly placeholder="Auto-calculated">
+
+      <!-- <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required> -->
+
+      <!-- <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" required> -->
+
+      <!-- <label for="requests">Special Requests</label>
+      <textarea id="requests" name="requests" rows="4"></textarea> -->
+
+      <!-- <div class="total-nights" id="display-nights"></div> -->
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+
+  <script>
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+    const nightsInput = document.getElementById('nights');
+    const displayNights = document.getElementById('display-nights');
+
+    function calculateNights() {
+      const checkin = new Date(checkinInput.value);
+      const checkout = new Date(checkoutInput.value);
+      if (checkin && checkout && checkout > checkin) {
+        const diffTime = checkout - checkin;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        nightsInput.value = diffDays;
+        displayNights.textContent = `Total Nights: ${diffDays}`;
+      } else {
+        nightsInput.value = '';
+        displayNights.textContent = '';
+      }
+    }
+
+    checkinInput.addEventListener('change', calculateNights);
+    checkoutInput.addEventListener('change', calculateNights);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Daily Activities | Luxury Retreat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --gold: #d4af37;
+        --light-gold: #f0e6d2;
+        --pale-gold: #f7f3e9;
+        --dark-gold: #b38a58;
+        --brown: #5a4a3a;
+        --light-brown: #8b6b3d;
+        --button-brown: #a67c52; /* Light brown for buttons */
+        --button-hover: #8b6b3d; /* Slightly darker for hover */
+        --off-white: #f8f4e9;
+        --cream: #fffcf5;
+        --soft-shadow: rgba(90, 74, 58, 0.08);
+        --medium-shadow: rgba(90, 74, 58, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Cormorant Garamond", serif;
+        background: linear-gradient(
+          135deg,
+          var(--pale-gold) 0%,
+          var(--off-white) 100%
+        );
+        color: var(--brown);
+        line-height: 1.7;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .schedule-container {
+        max-width: 1200px;
+        width: 100%;
+        background: var(--cream);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px var(--soft-shadow);
+        overflow: hidden;
+        padding: 3rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        position: relative;
+      }
+
+      .section-header h2 {
+        font-size: 3.2rem;
+        color: var(--brown);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-header h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 3px;
+      }
+
+      .section-header p {
+        font-size: 1.3rem;
+        color: var(--light-brown);
+        max-width: 600px;
+        margin: 2rem auto 0;
+        font-style: italic;
+      }
+
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+
+      .time-card {
+        background: var(--off-white);
+        border-radius: 16px;
+        padding: 2.5rem;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 25px var(--soft-shadow);
+        border: 1px solid var(--light-gold);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .time-card:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: var(--gold);
+      }
+
+      .time-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px var(--medium-shadow);
+      }
+
+      .time-card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .time-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--light-gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1.5rem;
+        color: var(--gold);
+        font-size: 1.8rem;
+      }
+
+      .time-card h4 {
+        font-size: 1.8rem;
+        color: var(--brown);
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .time-slots {
+        list-style: none;
+      }
+
+      .time-slot {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed var(--light-gold);
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .time-slot:hover {
+        border-bottom: 1px dashed var(--gold);
+      }
+
+      .time-slot:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .time {
+        font-weight: 600;
+        color: var(--dark-gold);
+        font-size: 1.1rem;
+        background: var(--light-gold);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        min-width: 110px;
+        text-align: center;
+      }
+
+      .activity {
+        flex: 1;
+        padding-left: 1.5rem;
+        font-size: 1.15rem;
+        color: var(--brown);
+        position: relative;
+      }
+
+      .activity:before {
+        content: "•";
+        color: var(--gold);
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -2px;
+      }
+
+      .activity-detail {
+        display: none;
+        margin-top: 0.8rem;
+        font-size: 0.95rem;
+        color: var(--light-brown);
+        font-style: italic;
+        padding-left: 1.2rem;
+        border-left: 2px solid var(--light-gold);
+        animation: fadeIn 0.5s ease;
+      }
+
+      .time-slot.active .activity-detail {
+        display: block;
+      }
+
+      .time-slot.active .activity {
+        font-weight: 600;
+        color: var(--dark-gold);
+      }
+
+      .book-btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background: var(--button-brown); /* Light brown color */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+        box-shadow: 0 5px 15px rgba(166, 124, 82, 0.3);
+        letter-spacing: 0.5px;
+      }
+
+      .book-btn:hover {
+        background: var(--button-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(166, 124, 82, 0.4);
+      }
+
+      .schedule-footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--light-gold);
+        color: var(--light-brown);
+        font-style: italic;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 968px) {
+        .schedule-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .section-header h2 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .schedule-container {
+          padding: 2rem;
+        }
+
+        .section-header h2 {
+          font-size: 2.4rem;
+        }
+
+        .time-card {
+          padding: 2rem;
+        }
+
+        .time-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+        }
+
+        .time-card h4 {
+          font-size: 1.6rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .schedule-container {
+          padding: 1.5rem;
+        }
+
+        .section-header h2 {
+          font-size: 2rem;
+        }
+
+        .section-header p {
+          font-size: 1.1rem;
+        }
+
+        .time-slot {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .time {
+          margin-bottom: 0.5rem;
+        }
+
+        .activity {
+          padding-left: 0;
+        }
+
+        .activity:before {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="schedule-section">
+      <div class="schedule-container">
+        <div class="section-header">
+          <h2>Daily Activities</h2>
+          <p>
+            Plan your perfect royal retreat with our curated daily activities
+          </p>
+        </div>
+
+        <div class="schedule-grid">
+          <div class="time-card">
+            <div class="time-card-header">
+              <div class="time-icon">
+                <i class="fas fa-sun"></i>
+              </div>
+              <h4>Morning</h4>
+            </div>
+            <ul class="time-slots">
+              <li class="time-slot">
+                <span class="time">6:00 AM</span>
+                <span class="activity">Sunrise Yoga</span>
+                <div class="activity-detail">
+                  Begin your day with a peaceful yoga session overlooking the
+                  palace gardens. All levels welcome.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">7:30 AM</span>
+                <span class="activity">Palace Garden Walk</span>
+                <div class="activity-detail">
+                  Guided tour through our historic gardens featuring rare
+                  botanical species and stunning landscapes.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">9:00 AM</span>
+                <span class="activity">Badminton Tournament</span>
+                <div class="activity-detail">
+                  Friendly competition at our indoor courts. Equipment provided,
+                  beginners to experts welcome.
+                </div>
+              </li>
+            </ul>
+            <button class="book-btn">Reserve Morning Activities</button>
+          </div>
+
+          <div class="time-card">
+            <div class="time-card-header">
+              <div class="time-icon">
+                <i class="fas fa-cloud-sun"></i>
+              </div>
+              <h4>Afternoon</h4>
+            </div>
+            <ul class="time-slots">
+              <li class="time-slot">
+                <span class="time">11:00 AM</span>
+                <span class="activity">Mixology Class</span>
+                <div class="activity-detail">
+                  Learn to craft signature palace cocktails with our expert
+                  mixologists using local ingredients.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">1:00 PM</span>
+                <span class="activity">Chess Championship</span>
+                <div class="activity-detail">
+                  Test your strategy in our weekly tournament or enjoy casual
+                  games with fellow guests.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">3:00 PM</span>
+                <span class="activity">Golf Clinic</span>
+                <div class="activity-detail">
+                  Professional instruction on our championship course or enjoy a
+                  relaxing round at your leisure.
+                </div>
+              </li>
+            </ul>
+            <button class="book-btn">Reserve Afternoon Activities</button>
+          </div>
+
+          <div class="time-card">
+            <div class="time-card-header">
+              <div class="time-icon">
+                <i class="fas fa-moon"></i>
+              </div>
+              <h4>Evening</h4>
+            </div>
+            <ul class="time-slots">
+              <li class="time-slot">
+                <span class="time">5:00 PM</span>
+                <span class="activity">Spa Happy Hour</span>
+                <div class="activity-detail">
+                  Special discounts on select spa treatments accompanied by
+                  complimentary herbal teas.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">7:00 PM</span>
+                <span class="activity">Royal Banquet</span>
+                <div class="activity-detail">
+                  Gourmet dining experience featuring local specialties and
+                  international cuisine in our grand hall.
+                </div>
+              </li>
+              <li class="time-slot">
+                <span class="time">9:00 PM</span>
+                <span class="activity">Cultural Performance</span>
+                <div class="activity-detail">
+                  Traditional music and dance performances showcasing the rich
+                  heritage of our region.
+                </div>
+              </li>
+            </ul>
+            <button class="book-btn">Reserve Evening Activities</button>
+          </div>
+        </div>
+
+        <div class="schedule-footer">
+          <p>
+            All activities are subject to availability. Please reserve at least
+            24 hours in advance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add click functionality to time slots
+        const timeSlots = document.querySelectorAll(".time-slot");
+
+        timeSlots.forEach((slot) => {
+          slot.addEventListener("click", function () {
+            // Remove active class from all slots
+            timeSlots.forEach((s) => s.classList.remove("active"));
+
+            // Add active class to clicked slot
+            this.classList.add("active");
+          });
+        });
+
+        // Add hover effect to time cards
+        const timeCards = document.querySelectorAll(".time-card");
+
+        timeCards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+        // Button interaction
+        const buttons = document.querySelectorAll(".book-btn");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.stopPropagation(); // Prevent triggering the time slot click
+            const card = this.closest(".time-card");
+            const timeOfDay = card.querySelector("h4").textContent;
+
+            alert(
+              `Thank you for your interest in our ${timeOfDay} activities! Our concierge will contact you to confirm your reservations.`
+            );
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
